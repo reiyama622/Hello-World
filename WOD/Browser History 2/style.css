@@ -1,13 +1,13 @@
-h1,h2 {
+h1,h2{
     font-family: 'Oswald', sans;
     }
-    body{
-        font-family:'Open Sans', sans;
-        color:darkblue;
-        width:950px;
-        margin: 10px 50px 10px 50px;
-        background-color: ivory;
+body{
+    font-family:'Open Sans', sans;
+    color:darkblue;
+    width:950px;
+    margin: 10px 50px 10px 50px;
+    background-color: ivory;
     }
-    img{
-        float: left;
+img{
+    float: left;
     }

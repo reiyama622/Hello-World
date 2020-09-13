@@ -1,0 +1,32 @@
+h1,h2{
+    font-family: 'Oswald', sans;
+    }
+body{
+    font-family:'Open Sans', sans;
+    color:darkblue;
+    width:950px;
+    margin: 10px 50px 10px 50px;
+    background-color: ivory;
+    }
+img{
+    float: left;
+    }
+.IE{
+    float:left;
+    width:300px
+}
+.GC{
+    margin-left: 300px;
+    margin-right: 300px;
+    padding-left: 10px;
+    width:300px;
+}
+.FF{
+    float:right;
+    width:300px;
+}
+li{
+    display:inline;
+    padding-left: 60px;
+    padding-right: 30px;
+}
