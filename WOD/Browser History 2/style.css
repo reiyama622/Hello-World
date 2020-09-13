@@ -1,9 +1,13 @@
-h1{
-    font-family:'oswald', sans;
-}
-h2{
-    font-family:'oswald', sans;
-}
-p{
-    font-family: 'open sans', sans;
-}
+h1,h2 {
+    font-family: 'Oswald', sans;
+    }
+    body{
+        font-family:'Open Sans', sans;
+        color:darkblue;
+        width:950px;
+        margin: 10px 50px 10px 50px;
+        background-color: ivory;
+    }
+    img{
+        float: left;
+    }
