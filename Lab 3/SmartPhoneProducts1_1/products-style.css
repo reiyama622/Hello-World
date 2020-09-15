@@ -4,7 +4,7 @@
 body{
     width:800px; 
     margin:auto;
-    text-align:center;
+    text-align: center;
 }
 /*Images*/
 img{
@@ -30,4 +30,17 @@ div{
     border-style: solid;
     border-color: black;
     display: flex;  
+}
+.rotate img
+{
+  animation: rotation .3s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
