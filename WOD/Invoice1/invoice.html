@@ -62,54 +62,54 @@
                 row.insertCell().innerHTML = item1; 
                 row.insertCell().innerHTML = quantity1;
                 row.insertCell().innerHTML = "$"+price1.toFixed(2);
-                row.insertCell().innerHTML = "$"+extendedPrice1;
+                row.insertCell().innerHTML = "$"+extendedPrice1.toFixed(2);
 
                 // item row 2
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = item2; 
                 row.insertCell().innerHTML = quantity2;
                 row.insertCell().innerHTML = "$"+price2.toFixed(2);
-                row.insertCell().innerHTML = "$"+extendedPrice2;
+                row.insertCell().innerHTML = "$"+extendedPrice2.toFixed(2);
 
                 // item row 3
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = item3; 
                 row.insertCell().innerHTML = quantity3;
                 row.insertCell().innerHTML = "$"+price3.toFixed(2);
-                row.insertCell().innerHTML = "$"+extendedPrice3;
+                row.insertCell().innerHTML = "$"+extendedPrice3.toFixed(2);
 
                 // item row 4
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = item4; 
                 row.insertCell().innerHTML = quantity4;
                 row.insertCell().innerHTML = "$"+price4.toFixed(2);
-                row.insertCell().innerHTML = "$"+extendedPrice4;
+                row.insertCell().innerHTML = "$"+extendedPrice4.toFixed(2);
 
                 // item row 5
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = item5; 
                 row.insertCell().innerHTML = quantity5;
                 row.insertCell().innerHTML = "$"+price5.toFixed(2);
-                row.insertCell().innerHTML = "$"+extendedPrice5;
+                row.insertCell().innerHTML = "$"+extendedPrice5.toFixed(2);
             </script>
             <tr></tr>
             <tr>
-                <td>Subtotal</td>
-                <td id="subtotalCell"></td>
+                <td style="text-align: center" colspan="3" width="50%">Subtotal</td>
+                <td id="subtotalCell" style="text-align: center"></td>
             </tr>
             <script>
                 subtotalCell.innerHTML = "$"+ subtotal.toFixed(2);
             </script>
             <tr>
-                <td>Tax @ 5.75%</td>
-                <td id="taxCell"></td>
+                <td style="text-align: center" colspan="3" width="50%">Tax @ 5.75%</td>
+                <td id="taxCell" style="text-align: center"></td>
             </tr>
             <script>
                 taxCell.innerHTML = "$"+ addedTax.toFixed(2);
             </script>
             <tr>
-                <td>Total</td>
-                <td id="grandTotalCell"></td>
+                <td style="text-align: center" colspan="3" width="50%">Total</td>
+                <td id="grandTotalCell" style="text-align: center"></td>
             </tr>
             <script>
                 grandTotalCell.innerHTML = "$"+ grandTotal.toFixed(2);
