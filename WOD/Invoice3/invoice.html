@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+</head>
+<body>
+    <script>
+        /* An invoice */
+        // Product 1
+        var item1 = 'Razor';
+        var quantity1 = 1;
+        var price1 = 1.23;
+        
+        // Product 2
+        var item2 = 'Pens';
+        var quantity2 = 2;
+        var price2 = 1.50;
+        
+        // Product 3
+        var item3 = 'Pencils';
+        var quantity3 = 2;
+        var price3 = 2.70;
+        
+        // Product 4
+        var item4 = 'Tape';
+        var quantity4 = 1;
+        var price4 = 3.43;
+        
+        // Product 5
+        var item5 = 'Glue';
+        var quantity5 = 2;
+        var price5 = 4.77;
+        var subtotal = 0;
+    </script>
+    <table border = "1" thickness = "1" id="invoiceTable">
+        <body>
+            <tr>
+                <td>Item</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Extended Price</td>
+            </tr>
+
+            <script>
+                var extendedPrice;
+                // item row 1
+                var row = invoiceTable.insertRow();
+                extendedPrice=quantity1*price1;
+                subtotal = subtotal + extendedPrice;
+                row.insertCell().innerHTML = item1; 
+                row.insertCell().innerHTML = quantity1;
+                row.insertCell().innerHTML = "$"+price1.toFixed(2);
+                row.insertCell().innerHTML = "$"+extendedPrice.toFixed(2);
+                // item row 2
+                var row = invoiceTable.insertRow();
+                extendedPrice=quantity2*price2;
+                subtotal = subtotal + extendedPrice;
+                row.insertCell().innerHTML = item2; 
+                row.insertCell().innerHTML = quantity2;
+                row.insertCell().innerHTML = "$"+price2.toFixed(2);
+                row.insertCell().innerHTML = "$"+extendedPrice.toFixed(2);
+
+                // item row 3
+                var row = invoiceTable.insertRow();
+                extendedPrice=quantity3*price3;
+                subtotal = subtotal + extendedPrice;
+                row.insertCell().innerHTML = item3; 
+                row.insertCell().innerHTML = quantity3;
+                row.insertCell().innerHTML = "$"+price3.toFixed(2);
+                row.insertCell().innerHTML = "$"+extendedPrice.toFixed(2);
+
+                // item row 4
+                var row = invoiceTable.insertRow();
+                extendedPrice=quantity4*price4;
+                subtotal = subtotal + extendedPrice;
+                row.insertCell().innerHTML = item4; 
+                row.insertCell().innerHTML = quantity4;
+                row.insertCell().innerHTML = "$"+price4.toFixed(2);
+                row.insertCell().innerHTML = "$"+extendedPrice.toFixed(2);
+
+                // item row 5
+                var row = invoiceTable.insertRow();
+                extendedPrice=quantity5*price5;
+                subtotal = subtotal + extendedPrice;
+                row.insertCell().innerHTML = item5; 
+                row.insertCell().innerHTML = quantity5;
+                row.insertCell().innerHTML = "$"+price5.toFixed(2);
+                row.insertCell().innerHTML = "$"+extendedPrice.toFixed(2);
+        //calculate tax
+        var tax = 0.0575;
+        var addedTax = subtotal*tax;
+        //grand total
+        var grandTotal= subtotal + addedTax;
+            </script>
+            <tr></tr>
+            <tr>
+                <td style="text-align: center" colspan="3" width="50%">Subtotal</td>
+                <td id="subtotalCell" style="text-align: center"></td>
+            </tr>
+            <script>
+                subtotalCell.innerHTML = "$"+ subtotal.toFixed(2);
+            </script>
+            <tr>
+                <td style="text-align: center" colspan="3" width="50%">Tax @ 5.75%</td>
+                <td id="taxCell" style="text-align: center"></td>
+            </tr>
+            <script>
+                taxCell.innerHTML = "$"+ addedTax.toFixed(2);
+            </script>
+            <tr>
+                <td style="text-align: center" colspan="3" width="50%">Shipping</td>
+                <td id="shippingCell" style="text-align: center"></td>
+            </tr>
+            <script>
+                var shipping;
+                if (subtotal < 50.00){
+                    shipping = 2.00;
+                }
+                else if(subtotal < 100 && subtotal > 50){
+                    shipping = 5.00;
+                }
+                else if(subtotal > 100){
+                    shipping = subtotal*.05;
+                }
+            </script>
+            <script>
+                shippingCell.innerHTML = "$"+ shipping.toFixed(2);
+            </script>
+            <tr>
+                <td style="text-align: center" colspan="3" width="50%"><strong>Total</strong></td>
+                <td id="grandTotalCell" style="text-align: center"></td>
+            </tr>
+            <script>
+                grandTotal = shipping+grandTotal;
+                grandTotal = grandTotal.toFixed(2);
+                grandTotal = "$" + grandTotal;
+                grandTotal = grandTotal.bold();
+                grandTotalCell.innerHTML = grandTotal;
+            </script>
+        </body>
+    </table>
+    <strong>OUR SHIPPING POLICY IS:A subtotal $0 - $49.99 will be $2 shipping
+        A subtotal $50 - $99.99 will be $5 shipping
+        Subtotals over $100 will be charged 5% of the subtotal amount</strong>
+</body>
+</html>
