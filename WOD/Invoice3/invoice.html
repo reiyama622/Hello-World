@@ -52,7 +52,7 @@
                 row.insertCell().innerHTML = item1; 
                 row.insertCell().innerHTML = quantity1;
                 row.insertCell().innerHTML = "$"+price1.toFixed(2);
-                row.insertCell().innerHTML = "$"+extendedPrice.toFixed(2);
+                row.insertCell().innerHTML = "$"+extendedPrice.toFixed(2)
                 // item row 2
                 var row = invoiceTable.insertRow();
                 extendedPrice=quantity2*price2;
@@ -133,11 +133,8 @@
                 <td id="grandTotalCell" style="text-align: center"></td>
             </tr>
             <script>
-                grandTotal = shipping+grandTotal;
-                grandTotal = grandTotal.toFixed(2);
-                grandTotal = "$" + grandTotal;
-                grandTotal = grandTotal.bold();
-                grandTotalCell.innerHTML = grandTotal;
+                grandTotal = "$" + (shipping+grandTotal).toFixed(2);
+                grandTotalCell.innerHTML = grandTotal.bold();
             </script>
         </body>
     </table>
