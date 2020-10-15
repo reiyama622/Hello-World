@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 10 Ex 3</title>
+</head>
+<body>
+    <table border="2">
+        <tbody>
+            <tr>
+                <th style="text-align:center;" width = "43%">Product #</th>
+                <th style="text-align:center;" width = "11%">Quantity</th>
+                <th style="text-align:center;" width = "11%">Price</th>
+                <th style="text-align:center;" width = "11%">Extended Price</th>
+            </tr>
+            <script>
+                /*Used in Ex3a
+                var product_quantities =[0,1,1,3,12];
+                */
+
+                var product1 = { 'name': 'small gumball', 'price': 0.02 };
+                var product2 = { 'name': 'medium gumball', 'price': 0.05 };
+                var product3 = { 'name': 'large gumball', 'price': 0.07 };
+
+                // array of all products
+                var products = [product1, product2, product3];
+                var cart_quantities = [2,0,4]; // corresponds to products array
+
+
+                for(i=0; i<cart_quantities.length; i++){
+                document.write(`
+                <tr>
+                    <td width="43%">${i+1}</td>
+                    <td align="center" width="11%">${cart_quantities[i]}</td>
+                    <td align="center" width="11%">$${products[i].price}</td> 
+                    <td align="center" width="11%">$${products[i].price*cart_quantities[i]}</td>  
+                    </tr>
+                    `);
+                }
+            </script>
+
+        </tbody>
+    </table>
+</body>
+</html>

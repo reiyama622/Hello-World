@@ -7,86 +7,65 @@
 </head>
 <body>
     <script>
+        /*An array that represents the inventory of the items
+        In the order product1, product2,... */
         var productQuantities=[
-            "Razor", "Pens", "Pencils", "Tape", "Glue"
-        ];
-        /* An invoice */
-        // Product 1
-        /*
-        var item1 = 'Razor';
-        var quantity1 = 1;
-        var price1 = 1.23;
-        */
+            0,2,2,4,3
+        ]   
+        /* An invoice 
+        Creates the items used in an invoice*/
+        // Product 1 as an object
         var product1= {
             productName: 'Razor',
             price: 1.23,
-            quantity: 1,
+            // not an identifier because it has # so you have to use product1['SKU#'] to call it CANNOT USE DOT NOTATION
             'SKU#': 1234
         };
         product1.quantity= 0;
         delete product1['SKU#'];
-        // Product 2
-        /*
-        var item2 = 'Pens';
-        var quantity2 = 2;
-        var price2 = 1.50;
-        */
+        
+        // Product 2 as an object
        var product2={
            productName: 'Pens',
            price: 1.50,
-           quantity: 2
        }
         
-        // Product 3
-        /*
-        var item3 = 'Pencils';
-        var quantity3 = 2;
-        var price3 = 2.70;
-        */
+        // Product 3 as an object
        var product3= {
            productName: 'Pencils',
            price: 2.70,
-           quantity: 2
        }
         
-        // Product 4
-        /*
-        var item4 = 'Tape';
-        var quantity4 = 1;
-        var price4 = 3.43;
-        */
+        // Product 4 as an object
        var product4= {
            productName: 'Tape',
            price: 3.34,
-           quantity: 4
        }
         
-        // Product 5
-        /*
-        var item5 = 'Glue';
-        var quantity5 = 3;
-        var price5 = 4.77;
-        */
+        // Product 5 as an object
        var product5= {
            productName: 'Glue',
            price: 4.77,
-           quantity: 3
        }
         
-        //compute xtended prices
-        var extendedPrice1=product1.quantity*product1.price;
-        var extendedPrice2=product2.quantity*product2.price;
-        var extendedPrice3=product3.quantity*product3.price;
-        var extendedPrice4=product4.quantity*product4.price;
-        var extendedPrice5=product5.quantity*product5.price;
+        //compute extended prices
+        var extendedPrice1=productQuantities[0]*product1.price;
+        var extendedPrice2=productQuantities[1]*product2.price;
+        var extendedPrice3=productQuantities[2]*product3.price;
+        var extendedPrice4=productQuantities[3]*product4.price;
+        var extendedPrice5=productQuantities[4]*product5.price;
+        
         //subtotal
         var subtotal = extendedPrice1+extendedPrice2+extendedPrice3+extendedPrice4+extendedPrice5;
+        
         //calculate tax
         var tax = 0.0575;
         var addedTax = subtotal*tax;
-        //grand total
+        
+        //grand total (subtotal + tax)
         var grandTotal= subtotal + addedTax;
-    </script>
+   
+   </script>
     <table border ="1" id="invoiceTable">
         <body>
             <tr>
@@ -100,35 +79,35 @@
                 // item row 1
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = product1.productName; 
-                row.insertCell().innerHTML = product1.quantity;
+                row.insertCell().innerHTML = productQuantities[0];
                 row.insertCell().innerHTML = "$"+product1.price.toFixed(2);
                 row.insertCell().innerHTML = "$"+extendedPrice1.toFixed(2);
 
                 // item row 2
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = product2.productName; 
-                row.insertCell().innerHTML = product2.quantity;
+                row.insertCell().innerHTML = productQuantities[1];
                 row.insertCell().innerHTML = "$"+product2.price.toFixed(2);
                 row.insertCell().innerHTML = "$"+extendedPrice2.toFixed(2);
 
                 // item row 3
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = product3.productName; 
-                row.insertCell().innerHTML = product3.quantity;
+                row.insertCell().innerHTML = productQuantities[2];
                 row.insertCell().innerHTML = "$"+product3.price.toFixed(2);
                 row.insertCell().innerHTML = "$"+extendedPrice3.toFixed(2);
 
                 // item row 4
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = product4.productName; 
-                row.insertCell().innerHTML = product4.quantity;
+                row.insertCell().innerHTML = productQuantities[3];
                 row.insertCell().innerHTML = "$"+product4.price.toFixed(2);
                 row.insertCell().innerHTML = "$"+extendedPrice4.toFixed(2);
 
                 // item row 5
                 var row = invoiceTable.insertRow();
                 row.insertCell().innerHTML = product5.productName; 
-                row.insertCell().innerHTML = product5.quantity;
+                row.insertCell().innerHTML = productQuantities[4];
                 row.insertCell().innerHTML = "$"+product5.price.toFixed(2);
                 row.insertCell().innerHTML = "$"+extendedPrice5.toFixed(2);
             </script>
