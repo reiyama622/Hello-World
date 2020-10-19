@@ -1,0 +1,33 @@
+
+
+/*General*/
+body{
+    width:800px; 
+    margin:auto;
+    text-align:center;
+}
+/*Images*/
+img{
+    width:200px;
+    height:200px;
+    padding: 10px;
+}
+/*Headings*/
+h1, h2{
+    text-align:Center;
+}
+/*general*/
+main{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+/*general*/
+div{
+    background-image: url(images/phone_globe.jpg);
+    background-repeat: no-repeat;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+    display: flex;  
+}
