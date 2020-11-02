@@ -1,0 +1,67 @@
+<script>
+    var products = [
+    {  
+    model:"Apple",  
+    price: 1.32,  
+    image: "apple.jpg"
+    },
+    {  
+    model:"Banana",  
+    price: 0.57,  
+    image: "banana.jpg"
+    },
+    {  
+    model:"Mango",  
+    price: 4.20,  
+    image: "mango.jpg"
+    },
+    {  
+    model:"Orange",  
+    price: 1.33,  
+    image: "orange.jpg"
+    },
+    {  
+    model:"Pineapple",  
+    price: 4.28,  
+    image: "pineapple.jpeg"
+    },
+    {  
+    model:"Strawberry",  
+    price: 2.40,  
+    image: "strawberry.jpeg"
+    },
+    {  
+    model:"Watermelon",  
+    price: 0.33,  
+    image: "watermelon.jpeg"
+    }
+  ]
+    </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Stand</title>
+</head>
+<body>
+    <body>
+        <h1>Rei's Fruit Stand </h1>
+        <div><main>
+        <script>
+            for(i=0;i< products.length;i++){
+            document.write(`
+            <section class="item">
+            <h2>${products[i].model}</h2>
+            <p>${products[i].price.toFixed(2)}</p>
+            <image src="${products[i].image}">
+                </image>
+            </section>
+            `)
+            }
+        </script>
+    </main></div>
+    <h1>Fruits</h1>
+    </body>
+</body>
+</html>
