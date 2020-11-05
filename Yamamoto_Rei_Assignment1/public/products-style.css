@@ -1,0 +1,50 @@
+
+
+/*General*/
+body{
+    background-image: url(./Images/fruits.jpg);
+    width:800px; 
+    margin:auto;
+    text-align:center;
+    
+}
+/*Images*/
+img{
+    width:200px;
+    height:200px;
+    padding: 10;
+}
+/*Headings*/
+#header{
+    text-align:Center;
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+    padding-top: 18px;
+    font-size: 30px;
+}
+#footer{
+    text-align:Center;
+    font-family: 'Poiret One', cursive;
+}
+/*general*/
+main{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;  
+}
+/*general*/
+#products{
+    font-family: 'Poiret One', cursive;
+    border-width: 5px;
+    border-style: solid;
+    border-color: pink;
+    background-color: white;
+}
+#price{
+    background-color: pink;
+    word-wrap: normal;
+    color: white; 
+}
+#textbox{
+    left:60;
+}
