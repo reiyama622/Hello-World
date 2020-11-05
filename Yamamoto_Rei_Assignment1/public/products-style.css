@@ -6,6 +6,7 @@ body{
     width:800px; 
     margin:auto;
     text-align:center;
+    font-family: 'Poiret One', cursive;
     
 }
 /*Images*/
@@ -32,7 +33,6 @@ main{
     flex-flow: row wrap;
     justify-content: space-around;  
 }
-/*general*/
 #products{
     font-family: 'Poiret One', cursive;
     border-width: 5px;

@@ -49,20 +49,16 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
-    
-
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
-    <link href="products_style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link href="products-style.css" rel="stylesheet">
     <title>Rei's Fruit Stand</title>
 </head>
 
-<body>
+<body style="color: pink">
     <form name="product_main_display" action="/process_purchase" method="POST">
-        <header>
+        <header style="color:beige">
             <h1>Rei's Fruit Stand</h1>
             <h2>Fresh AF</h2>
         </header>
@@ -70,29 +66,22 @@
             <div class="column"></div>
             <div class="column"></div>
         </div>
-        <div>
-
+        <div id="products">
             <main>
                 <script>
                     for (i = 0; i < products.length; i++) {
                         document.write(`
-                                <section class="item">
-                                    <div id="product">
-                                    <h2>${products[i].model}</h2>
-                                    </div>
-                                    <br>
-                                    <div id="image">
-                                    <img src="${products[i].image}">
-                                    </div>
-                                    <div id="price">
-                                    <p>$${products[i].price}</p>
-                                    </div>
-                                    <label id="quantity${i}_label"}">Quantity</label>
-                                    <input type="text" placeholder="0" name="quantity${i}" 
-                                    onkeyup="checkQuantityTextbox(this);">
-                
-                                </section>
-                            `);
+            <section class="item">
+            <h2>${products[i].model}</h2>
+            <div id="image">
+            <img src="${products[i].image}">
+            </div>
+            <p>$${products[i].price.toFixed(2)}</p>
+            <label id="quantity${i}_label"}">Quantity</label>
+            <input type="text" placeholder="0" name="quantity${i}" onkeyup="checkQuantityTextbox(this)">
+            
+            </section>
+            `)
                     }    
                 </script>
             </main>
