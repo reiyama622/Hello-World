@@ -23,6 +23,13 @@ body{
     text-align: center;
     font-family: 'Poiret One', cursive; 
 }
+#bottomHeading{
+    padding-top: 10;
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Poiret One', cursive; 
+    color: beige;
+}
 #table{
     border-radius: 10px;
     margin-left: auto;
