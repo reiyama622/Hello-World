@@ -4,7 +4,7 @@ Assignment 1: Server
 */
 var products = require('./public/product_data.js'); //load services_data.js file and set to variable 'data'
 var services_array = data.products; //set variable 'services_array' to the services_array in the services_data.js file
-const queryString = require('qs'); //read variable 'queryString' as the loaded query-string module
+var queryString = require('qs'); //read variable 'queryString' as the loaded query-string module
 var express = require('express'); //load and cache express module
 var app = express(); //set module to variable 'app'
 var myParser = require("body-parser"); //load and cache body parser module
