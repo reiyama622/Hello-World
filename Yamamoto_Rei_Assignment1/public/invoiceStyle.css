@@ -1,0 +1,40 @@
+table,td,th {
+    border: 1px solid pink;
+    padding: 8px;
+    font-family: 'Poiret One', cursive;
+  }
+  table{
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Poiret One', cursive;
+  }
+#header{
+    width: 100%;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+}
+body{
+    font-family: 'Poiret One', cursive; 
+    background-image: url(./Images/fruits.jpg);
+}
+#footer{
+    width: 100%;
+    text-align: center;
+    font-family: 'Poiret One', cursive; 
+}
+#table{
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+    padding: 20 10 50 10;
+    background-color: beige;
+}
+#b{
+    padding-top:10;
+}
+#tablerow{
+    font-size: large;
+    background-color: pink;
+}

@@ -12,7 +12,7 @@
     function checkQuantityTextbox(theTextbox) {
         errs = isNonNegInt(theTextbox.value, true);
         if (errs.length == 0) errs = ['You want:'];
-        if (theTextbox.value.trim() == '') errs = ['Quantity'];
+        if (theTextbox.value.trim() == '') errs = ['Pounds'];
         document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
     }
     window.onload = function () {
@@ -59,8 +59,8 @@
 <body style="color: pink">
     <form name="product_main_display" action="/process_form " method="POST">
         <header style="color:beige">
-            <h1>Rei's Fruit Stand</h1>
-            <h2>Fresh AF</h2>
+            <h1 id="shop">Rei's Fruit Stand</h1>
+            <h1 id="info">real af, fresh af, good af</h1>
         </header>
         <div class="row">
             <div class="column"></div>
@@ -73,13 +73,17 @@
                         document.write(`
             <section class="item">
             <h2>${products[i].model}</h2>
+            <div id="price">
+            <p>$${products[i].price.toFixed(2)}/lb</p>
+            </div>
             <div id="image">
             <img src="${products[i].image}">
             </div>
-            <p>$${products[i].price.toFixed(2)}</p>
-            <label id="quantity${i}_label"}">Quantity</label>
+            <label id="quantity${i}_label"}">Pounds</label>
             <input type="text" placeholder="0" name="quantity${i}" onkeyup="checkQuantityTextbox(this)">
-            
+            <br>
+            <br>
+            <br>
             </section>
             `)
                     }    
@@ -88,7 +92,8 @@
         </div>
         <footer>
 
-            <input type="submit" value="Submit Purchase" name="submitPurchase">
+            <div id="b"><input id="button" type="submit" value="Check Out" name="submitPurchase"></div>
+            
         </footer>
     </form>
 </body>

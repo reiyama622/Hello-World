@@ -7,7 +7,7 @@ body{
     margin:auto;
     text-align:center;
     font-family: 'Poiret One', cursive;
-    
+    letter-spacing: 3;
 }
 /*Images*/
 img{
@@ -16,12 +16,18 @@ img{
     padding: 10;
 }
 /*Headings*/
-#header{
+#info{
     text-align:Center;
     font-family: 'Poiret One', cursive;
     font-weight: bold;
-    padding-top: 18px;
-    font-size: 30px;
+    font-size: 40;
+    padding-top: 0;
+}
+#shop{
+    padding-top: 15;
+    text-align:Center;
+    font-family: 'Poiret One', cursive;
+    font-size: 70;
 }
 #footer{
     text-align:Center;
@@ -38,7 +44,8 @@ main{
     border-width: 5px;
     border-style: solid;
     border-color: pink;
-    background-color: white;
+    background-color: beige;
+    padding-bottom: 10;
 }
 #price{
     background-color: pink;
@@ -48,3 +55,15 @@ main{
 #textbox{
     left:60;
 }
+#b{
+    padding-top: 10;
+}
+input[type=submit]{
+    background-color: pink;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
