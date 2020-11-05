@@ -1,17 +1,18 @@
-<script>
-src="./product_data.js"; type="text/javascript"> //uses get request for the product list</script> 
+
+<script 
+src="./product_data.js" type="text/javascript"> //uses get request for the product list</script> 
 <script>
   //referenced from assignment 1 examples
-        let params = (new URL(document.location)).searchParams;
+        let params = (new URL(document.location)).searchParams; //takes data from query called submit_purchase, if it has it then it looks for the quantities// 
         var quantities = [];
-        if (params.has('submitPurchase')) {
+        // processing the invoice to create the form from the data entered
+        if (params.has('submitPurchase')) { // loop that pulls information//
           for (i = 0; i < products.length; i++) {
             if (params.has(`quantity${i}`)) {
               a_qty = params.get(`quantity${i}`);
               quantities[i] = a_qty;
             }
           }
-
         } else {
           document.write('Please enter a valid quantity!');
         }
@@ -24,7 +25,7 @@ src="./product_data.js"; type="text/javascript"> //uses get request for the prod
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Invoice</title>
+      <title>Document</title>
       <link href="invoice_style.css" rel="stylesheet">
       
     </head>

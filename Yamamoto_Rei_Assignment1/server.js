@@ -2,7 +2,7 @@
 Copied from info_server_Ex4.js from Lab13
 Assignment 1: Server
 */
-var data = require('./public/product_data.js'); //load services_data.js file and set to variable 'data'
+var products = require('./public/product_data.js'); //load services_data.js file and set to variable 'data'
 var services_array = data.products; //set variable 'services_array' to the services_array in the services_data.js file
 const queryString = require('qs'); //read variable 'queryString' as the loaded query-string module
 var express = require('express'); //load and cache express module
@@ -16,14 +16,12 @@ app.all('*', function (request, response, next) { //for all request methods...
 
 app.use(myParser.urlencoded({ extended: true })); //get data in the body
 
-app.post("/process_purchase", function (request, response) {
+app.post("/process_form", function (request, response) {
         let POST = request.body; // data would be packaged in the body//
-    
         if (typeof POST['submitPurchase'] != 'undefined') {
             var hasvalidquantities=true; // creating a varibale assuming that it'll be true// 
-            var hasquantities=false
+            var hasquantities=false;
             for (var i = 0; i < products.length; i++) {
-                
                             var qty=POST[`quantity${i}`];
                             hasquantities=hasquantities || qty>0; // If it has a value bigger than 0 then it is good//
                             hasvalidquantities=hasvalidquantities && isNonNegInt(qty);    // if it is both a quantity over 0 and is valid//     

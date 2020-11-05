@@ -40,7 +40,7 @@
             } else if (total_qty == 0) { // no quantity selections, just give a general alert
                 alert("Please select some quantities!");
             } else { // all good to go!
-                window.location = `./Invoice.html${document.location.search}`; //Redirects itself
+                window.location = `./invoice.html${document.location.search}`; //Redirects itself
                 window.stop;
             }
         }
@@ -57,7 +57,7 @@
 </head>
 
 <body style="color: pink">
-    <form name="product_main_display" action="/process_purchase" method="POST">
+    <form name="product_main_display" action="/process_form " method="POST">
         <header style="color:beige">
             <h1>Rei's Fruit Stand</h1>
             <h2>Fresh AF</h2>

@@ -1,4 +1,4 @@
-var products=[
+var products =[
     {  
     "model":"Apple",  
     "price": 1.32,  
