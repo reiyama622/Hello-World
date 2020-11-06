@@ -1,0 +1,72 @@
+
+
+/*General*/
+body{
+    background-image: url(./Images/fruits.jpg);
+    width:800px; 
+    margin:auto;
+    text-align:center;
+    font-family: 'Poiret One', cursive;
+    letter-spacing: 3;
+}
+/*Images*/
+img{
+    width:200px;
+    height:200px;
+    padding: 10;
+}
+/*Headings*/
+#info{
+    text-align:Center;
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+    font-size: 40;
+    padding-top: 0;
+}
+#shop{
+    padding-top: 15;
+    text-align:Center;
+    font-family: 'Poiret One', cursive;
+    font-size: 70;
+}
+#footer{
+    text-align:Center;
+    font-family: 'Poiret One', cursive;
+}
+/*general*/
+main{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;  
+}
+#products{
+    font-family: 'Poiret One', cursive;
+    border-width: 5px;
+    border-style: solid;
+    border-color: pink;
+    background-color: beige;
+    padding-bottom: 10;
+}
+#price{
+    background-color: pink;
+    word-wrap: normal;
+    color: white; 
+}
+#textbox{
+    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;  
+}
+#b{
+    padding-top: 10;
+}
+input[type=submit]{
+    background-color: pink;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    }

@@ -48,55 +48,131 @@
 </script>
 
 <!DOCTYPE html>
-<!-- Based off of SmartPhoneProducts WOD-->
+<!--Used a template from  W3schools Based off of SmartPhoneProducts1-->
+
 <html>
-<head>
-    <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-    <link href="products-style.css" rel="stylesheet">
-    <title>Rei's Fruit Stand</title>
-</head>
+<title>Rei's Fruit Stand</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: 'Poiret One', cursive;color:pink}
+input[type=submit]{
+  width:100%;
+    background-color: pink;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+.w3-bar-block .w3-bar-item {padding:20px}
+</style>
+<body>
+  <form name="product_main_display" action="/process_form " method="POST">
+<!-- Sidebar (hidden by default) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()"
+  class="w3-bar-item w3-button">Close Menu</a>
+  <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button">Fruit Stand</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">About Us</a>
+</nav>
 
-<body style="color: pink">
-    <form name="product_main_display" action="/process_form " method="POST">
-        <header style="color:beige">
-            <h1 id="shop">Rei's Fruit Stand</h1>
-            <h1 id="info">real af, fresh af, good af</h1>
-        </header>
-        <div class="row">
-            <div class="column"></div>
-            <div class="column"></div>
-        </div>
-        <div id="products">
-            <main>
-                <script>
-                    for (i = 0; i < products.length; i++) {
-                        document.write(`
-            <section class="item">
-            <h2>${products[i].model}</h2>
-            <div id="price">
-            <p>$${products[i].price.toFixed(2)}/lb</p>
+<!-- Top menu -->
+<div class="w3-top">
+  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()" style="background-color: pink;color:white">☰</div>
+    <div class="w3-right w3-padding-16"></div>
+    <h1><div class="w3-center w3-padding-16" style="background-color: pink;color:white">Rei's Fruit Stand</div></h1>
+  </div>
+</div>
+  
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+      <script>
+        for (i = 0; i < products.length; i++) {
+            document.write(`
+            <div class="w3-quarter">
+                <h2>${products[i].model}</h2>
+                <div id="price" style="background-color:pink;color:white;width:100%;">
+                <p>$${products[i].price.toFixed(2)}/lb</p>
+                </div>
+                <div id="image">
+                <img src="${products[i].image}" style="width:250px;height:200px">
+                </div>
+                <br>
+                <label id="quantity${i}_label"}">Pounds</label>
+                <input type="text" placeholder="0" name="quantity${i}" onkeyup="checkQuantityTextbox(this)">
+                <br>
+                <br>
+                <br>
             </div>
-            <div id="image">
-            <img src="${products[i].image}">
-            </div>
-            <label id="quantity${i}_label"}">Pounds</label>
-            <input type="text" placeholder="0" name="quantity${i}" onkeyup="checkQuantityTextbox(this)">
-            <br>
-            <br>
-            <br>
-            </section>
             `)
-                    }    
-                </script>
-            </main>
-        </div>
-        <footer>
+        }    
+    </script>
+    </div>
+</div>        
+<footer>
+  <div id="b"><input id="button" type="submit" value="Check Out" name="checkOut" ></div>  
+</footer>
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+    </div>
+  </div>
+  
+  <hr id="about">
+<!-- Footer -->
+<footer class="w3-row-padding w3-padding-32">
+  <div class="w3-third">
+    <h3>About Us;</h3>
+    <p>We are a local fruit stand located on the northshore of 'Oahu. Locally grown and operated since 2020. Come check us out!</p>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </div>
 
-            <div id="b"><input id="button" type="submit" value="Check Out" name="checkOut"></div>
-            
-        </footer>
-    </form>
+  <div class="w3-third">
+    <h3>Contact Us</h3>
+    <ul class="w3-ul w3-hoverable">
+      <li class="w3-padding-16">
+        <span class="w3-large">Phone:</span><br>
+        <span>(808)123-4567</span>
+      </li>
+      <li class="w3-padding-16">
+        <span class="w3-large">Address:</span><br>
+        <span>1234 Rei Yamamoto Rd. Honolulu, Hawaii 96822
+        </span>
+      </li> 
+    </ul>
+  </div>
+
+  <div class="w3-third w3-serif">
+    <h3>POPULAR TAGS</h3>
+    <p>
+      <span class="w3-tag w3-black w3-margin-bottom">Fresh</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fruit</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Sweet</span>
+      <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Organic</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Farm</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Hawaii</span>
+    </p>
+  </div>
+</footer>
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+</form>
 </body>
-
 </html>

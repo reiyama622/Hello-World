@@ -28,7 +28,7 @@ body{
     font-size: 30px;
     text-align: center;
     font-family: 'Poiret One', cursive; 
-    color: beige;
+    color: white;
 }
 #table{
     border-radius: 10px;
@@ -36,7 +36,7 @@ body{
     margin-right: auto;
     width:80%;
     padding: 20 10 50 10;
-    background-color: beige;
+    background-color: white;
 }
 #b{
     padding-top:10;
