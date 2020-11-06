@@ -1,7 +1,7 @@
 /* 
 Used from Lab13
 */
-var data = require('./public/product_data.js'); //load products_data.js file and set to variable 'data'
+var data = require('../Yamamoto_Rei_Assignment1/public/product_data.js'); //load products_data.js file and set to variable 'data'
 var products = data.products; //set variable 'products' to the products array in the product_data.js file
 var queryString = require('query-string'); //read variable 'queryString' as the loaded query-string module
 var express = require('express'); //load and cache express module
