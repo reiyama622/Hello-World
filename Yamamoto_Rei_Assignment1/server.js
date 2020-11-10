@@ -1,12 +1,16 @@
 /* 
 Used from Lab13
 */
-var data = require('../Yamamoto_Rei_Assignment1/public/product_data.js'); //load products_data.js file and set to variable 'data'
-var products = data.products; //set variable 'products' to the products array in the product_data.js file
-var queryString = require('query-string'); //read variable 'queryString' as the loaded query-string module
-var express = require('express'); //load and cache express module
-var app = express(); //set module to variable 'app'
-var myParser = require("body-parser"); //load and cache body parser module
+//data from product_data in variable data
+var data = require('../Yamamoto_Rei_Assignment1/public/product_data.js');
+//set products to equal the products from the data variable
+var products = data.products; 
+//quert string into an object
+var queryString = require('query-string'); 
+
+var express = require('express'); 
+var app = express(); 
+var myParser = require("body-parser"); 
 
 //writes the requests in the console
 app.all('*', function (request, response, next) { 
@@ -17,15 +21,15 @@ app.all('*', function (request, response, next) {
 app.use(myParser.urlencoded({ extended: true }));
 
 //from ex4 lab13
+//takes the data from the query string and puts it in the invoice
 app.post("/process_form", function (request, response) {
         let POST = request.body; 
-        
         if (typeof POST['checkOut'] != 'undefined') {
             var hasvalidquantities=true;
             var hasquantities=false;
             for (var i = 0; i < products.length; i++) {
                             var qty=POST[`quantity${i}`];
-                            hasquantities=hasquantities || qty>0;
+                            hasquantities=hasquantities || qty > 0;
                             hasvalidquantities=hasvalidquantities && isNonNegInt(qty);    
             } 
             const stringified = queryString.stringify(POST);
@@ -36,7 +40,7 @@ app.post("/process_form", function (request, response) {
         }
     });
     
-    //chacks for non neg instegers
+    //checks for non neg inetegers
     function isNonNegInt(q, returnErrors = false) {
        var errors = [];
         if (q == "") { q = 0; }
