@@ -5,7 +5,7 @@ Used from Lab13
 var data = require('../Yamamoto_Rei_Assignment1/public/product_data.js');
 //set products to equal the products from the data variable
 var products = data.products; 
-//quert string into an object
+//query string into an object
 var queryString = require('query-string'); 
 
 var express = require('express'); 
@@ -43,9 +43,15 @@ app.post("/process_form", function (request, response) {
     //checks for non neg inetegers
     function isNonNegInt(q, returnErrors = false) {
        var errors = [];
-        if (q == "") { q = 0; }
-        if (Number(q) != q) errors.push('Not a number!');
-        if (q < 0) errors.push('Negative value!');
+        if (q == "") {
+             q = 0; 
+        }
+        if (Number(q) != q){
+             errors.push('Not a number!');
+        }
+        if (q < 0){ 
+             errors.push('Negative value!');
+        }
         if (parseInt(q) != q) errors.push('Not an integer!'); 
         return returnErrors ? errors : (errors.length == 0);
     }
