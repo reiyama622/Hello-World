@@ -1,4 +1,10 @@
+
+var express = require('express');
+var app = express();
+var myParser = require("body-parser");
+
 const fs = require('fs');
+
 const user_data_filename = 'user_data.json'
 
 //checks if the file exists before reading it
@@ -13,14 +19,11 @@ if(fs.existsSync(user_data_filename)){
     var user_reg_data = JSON.parse(data);
     
 }
+
 //console.log(data, typeof users_reg_data, typeof data);
 
 //logs the value of password in the user_reg_data json file.
 //console.log(user_reg_data['dport']['password'])
-
-var express = require('express');
-var app = express();
-var myParser = require("body-parser");
 
 app.use(myParser.urlencoded({ extended: true }));
 
