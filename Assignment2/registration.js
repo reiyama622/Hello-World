@@ -26,21 +26,7 @@ check to see if username is more than 4 but less than 10
 check it is only letters and numbers
 if not error. 
 */
-
-
 var usernameErrors = [];
-/*
-var jsonString = JSON.stringify(filename);
-console.log(jsonString);
-var alreadyUsed = false
-if(jsonString.indexOf('username')){
-    alreadyUsed = true;
-    usernameErrors.push('This username is taken.');
-}
-else{
-    alreadyUsed = false
-}*/
-
 function validUsernameCheck(username){
     var usernameLength = POST["username"].length;
     var letters = /^[A-Za-z]+$/;
@@ -52,7 +38,16 @@ function validUsernameCheck(username){
        return false
     }
 }
-
+/*check to see if the username is taken*/
+var alreadyUsed = false;
+for (var i=0; i < filename.length; i++) {
+    if (filename[i].name == POST["username"]){
+        usernameErrors.push('This Username is already taken');
+        alreadyUsed = true;
+    } else{
+        alreadyUsed = false;
+    }
+}
 /*
 check password
 minimum of six characters
@@ -110,7 +105,7 @@ app.post("/register", function (request, response) {
     // process a simple register form
     POST = request.body;
     console.log("Got register POST");
-    if ((POST["username"] != undefined && POST['password'] != undefined) && (validUsernameCheck(POST["username"])==true && passwordCheck(POST["password"])==true && validateEmail(POST["emial"])==true) /*&& alreadyUsed==false*/) {          // Validate user input
+    if ((POST["username"] != undefined && POST['password'] != undefined) && (validUsernameCheck(POST["username"])==true && passwordCheck(POST["password"])==true && validateEmail(POST["emial"])==true) && alreadyUsed==false) {          // Validate user input
         var username = POST["username"];
         user_data[username] = {};
         user_data[username].name = username;
