@@ -44,9 +44,11 @@ app.post("/process_purchase", function (request, response) {
             // if all quantities are valid, generate the invoice// 
             const stringified = queryString.stringify(POST);
             if (hasvalidquantities && hasquantities) {
-                response.redirect("./invoice.html?"+stringified); // using the invoice.html and all the data that is input//
+                response.redirect("./register.html?"+stringified); // using the invoice.html and all the data that is input//
             }  
-            else {response.redirect("./products_display.html?" + stringified)}
+            else {
+                response.redirect("./products_display.html?" + stringified)
+            }
         }
     });
     
@@ -70,7 +72,7 @@ app.post("/process_login", function (req, res) {
             req.query.username = the_username;
             console.log(users_reg_data[req.query.username].name);
             req.query.name = users_reg_data[req.query.username].name
-            res.redirect('/Invoice.html?' + queryString.stringify(req.query));
+            res.redirect('./invoice.html?' + queryString.stringify(req.query));
             return;
             //Redirect them to invoice here if they logged in correctly//
         } else {
@@ -135,7 +137,7 @@ app.post("/process_register", function (req, res) {
        console.log('none');
        req.query.username = reguser;
        req.query.name = req.body.name;
-       res.redirect('/Invoice.html?' + queryString.stringify(req.query))
+       res.redirect('./invoice.html?' + queryString.stringify(req.query))
     }
     if (errors.length > 0) {
         console.log(errors)
@@ -146,8 +148,21 @@ app.post("/process_register", function (req, res) {
         req.query.email = req.body.email;
 
         req.query.errors = errors.join(';');
-        res.redirect('register.html?' + queryString.stringify(req.query))
+        res.redirect('./register.html?' + queryString.stringify(req.query))
     }
+else{
+    var username = POST["username"];
+    user_reg_data[username] = {};
+    user_reg_data[username].name = username;
+    user_reg_data[username].password = POST['password'];
+    user_reg_data[username].email = POST['email'];
+
+    data = JSON.stringify(user_data);
+    fs.writeFileSync(filename, data, "utf-8");
+    response.send("User " + username + " logged in");
+
+}
+
 });
 
 //from ex4 lab13
@@ -164,7 +179,7 @@ app.post("/process_form", function (request, response) {
         } 
         const stringified = queryString.stringify(POST);
         if (hasvalidquantities && hasquantities) {
-            response.redirect("./invoice.html?"+stringified); 
+            response.redirect("./register.html?"+stringified); 
         }  
         else {response.send('You did not enter a valid quantity')} 
     }
