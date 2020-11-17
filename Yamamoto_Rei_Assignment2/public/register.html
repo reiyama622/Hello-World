@@ -90,14 +90,14 @@ input[type=submit]{
         <form method="POST" action="process_register" name="Register">
             <input type="text" name="fullname" size="40" pattern="[a-zA-Z]+[ ]+[a-zA-Z]+"
                 placeholder="Enter First & Last Name"><br />
-            <input type="text" name="username" size="40" pattern=".[a-z0-9]{3,10}" required
+            <input type="text" name="username" size="40" pattern="^[a-zA-Z0-9]{3,10}$" required
                 title="Minimum 4 Characters, Maximum 10 Characters, Numbers/Letters Only"
                 placeholder="Enter Username"><br />
             <input type="email" name="email" size="40" placeholder="Enter Email"
                 pattern="[a-z0-9._]+@[a-z0-9]+\.[a-z]{3,}$" required title="Please enter valid email."><br />
-            <input type="password" id="password" name="password" size="40" pattern=".{6,}" required
+            <input type="password" id="password" name="password" size="40" pattern=".{5,}" required
                 title="6 Characters Minimum" placeholder="Enter Password"><br />
-            <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{6,}" required
+            <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{5,}" required
                 title="6 Characters Minimum" placeholder="Repeat Password"><br />
 
             <input type="submit" value="Register" id="submit">

@@ -75,14 +75,14 @@ app.post("/process_login", function (req, res) {
     console.log(req.query);
     var the_username = req.body.username.toLowerCase();
     if (typeof user_reg_data[the_username] != 'undefined') {
-        //Asking object if it has matching username, if it doesnt itll be undefined.
+        //Asking object if it has matching username, if it doesnt it'll be undefined.
+            //Redirect them to invoice here if they logged in correctly
         if (user_reg_data[the_username].password == req.body.password) {
             req.query.username = the_username;
             console.log(user_reg_data[req.query.username].name);
             req.query.name = user_reg_data[req.query.username].name
             res.redirect('./invoice.html?' + queryString.stringify(req.query));
             return;
-            //Redirect them to invoice here if they logged in correctly//
         } else {
             LogError.push = ('Invalid Password');
       console.log(LogError);
@@ -106,35 +106,53 @@ app.post("/process_register", function (req, res) {
     //validating full name only letters
     if (/^[A-Za-z]+$/.test(req.body.name)) {
     console.log('valid name')
-    }
-    else {
+    }else {
       errors.push('Use Letters Only for Full Name')
     }
+
     // validating defined Full name
     if (req.body.name == "") {
-      errors.push('Invalid Full Name');
-    }
-    //check if username is taken
-    var reguser = req.body.username.toLowerCase(); 
-    if (typeof user_reg_data[reguser] != 'undefined') { 
-      errors.push('Username taken')
-    }
-    //chack for valid username using only letters and numbers
-    if (/^[0-9a-zA-Z]+$/.test(req.body.username)) {
+      errors.push('Full name not defined');
+    }else{
+    console.log('full name defined')
+    }
+
+    //check is username is between 4 and 10 characters
+    if (/.{3,10}/ .test(req.body.username)) {
+    console.log('valid username length')
+    }else {
+    errors.push('Username must be between 4 and 11 characters.')
+    }
+
+    //check for valid username using only letters and numbers
+    if (/^[a-zA-Z0-9]*$/.test(req.body.username)) {
     console.log('valid username')
+    }else {
+      errors.push('Letters And Numbers Only for Username. Username must be between 4 and 11 characters.')
     }
-    else {
-      errors.push('Letters And Numbers Only for Username')
-    }
+
+    //check if username is taken
+        var reguser = req.body.username.toLowerCase(); 
+        if (typeof user_reg_data[reguser] != 'undefined') { 
+          errors.push('Username taken')
+        }else{
+        console.log('New username')
+        }
   
-    //password is min 8 characters long 
-    if ((req.body.password.length < 8 && req.body.username.length > 20)) {
+    //password is min 6 characters long 
+    if (req.body.password.length < 6) {
       errors.push('Password Too Short')
-    }
+    }else{
+    console.log('valid Password length')
+    }
+
+
     // check to see if passwords match
     if (req.body.password !== req.body.repeat_password) { 
-      errors.push('Password Not a Match')
-    }
+      errors.push('Passwords do not match')
+    }else{console.log('passwords match')
+    }
+
     //if there are no errors, register user
     if (errors.length == 0) {
             POST = req.body;
@@ -151,14 +169,16 @@ app.post("/process_register", function (req, res) {
     //if there are errors do not register
     if (errors.length > 0) {
         console.log(errors)
+/*
         req.query.name = req.body.name;
         req.query.username = req.body.username;
         req.query.password = req.body.password;
         req.query.repeat_password = req.body.repeat_password;
         req.query.email = req.body.email;
-
         req.query.errors = errors.join(';');
-        res.redirect('register.html?' + queryString.stringify(req.query))
+*/
+res.send('You have these errors in your registration: ' + errors + " ");
+        //res.redirect('register.html?' + queryString.stringify(req.query))
     }
 });
 
