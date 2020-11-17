@@ -2,8 +2,8 @@
 Copied from info_server_Ex4.js from Lab13
 */
 
-var data = require('../Yamamoto_Rei_Assignment1/public/product_data.js');
-var products = data.products; 
+var data1 = require('../Yamamoto_Rei_Assignment1/public/product_data.js');
+var products = data1.products; 
 const queryString = require('query-string'); //read variable 'queryString' as the loaded query-string module//
 var express = require('express'); //load and cache express module//
 var app = express(); //set module to variable 'app'//
@@ -13,11 +13,11 @@ var filename = 'user_data.json'; // new//
 var fs = require('fs'); //Load file system//
 //added just now
 if (fs.existsSync(filename)) {
-    var stats = fs.statSync(filename) //gets stats from file
-    console.log(filename + 'has' + stats.size + 'characters');
+    var data = fs.statSync(filename) //gets stats from file
+    console.log(filename + 'has' + data.size + 'characters');
 
     data = fs.readFileSync(filename, 'utf-8');
-    var users_reg_data = JSON.parse(data);
+    var user_reg_data = JSON.parse(data);
 } else { 
     console.log(filename + 'does not exist!');
 }
@@ -66,12 +66,12 @@ app.post("/process_login", function (req, res) {
     var LogError = [];
     console.log(req.query);
     var the_username = req.body.username.toLowerCase();
-    if (typeof users_reg_data[the_username] != 'undefined') {
+    if (typeof user_reg_data[the_username] != 'undefined') {
         //Asking object if it has matching username, if it doesnt itll be undefined.
-        if (users_reg_data[the_username].password == req.body.password) {
+        if (user_reg_data[the_username].password == req.body.password) {
             req.query.username = the_username;
-            console.log(users_reg_data[req.query.username].name);
-            req.query.name = users_reg_data[req.query.username].name
+            console.log(user_reg_data[req.query.username].name);
+            req.query.name = user_reg_data[req.query.username].name
             res.redirect('./invoice.html?' + queryString.stringify(req.query));
             return;
             //Redirect them to invoice here if they logged in correctly//
@@ -79,7 +79,7 @@ app.post("/process_login", function (req, res) {
             LogError.push = ('Invalid Password');
       console.log(LogError);
       req.query.username= the_username;
-      req.query.name= users_reg_data[the_username].name;
+      req.query.name= user_reg_data[the_username].name;
       req.query.LogError=LogError.join(';');
         }
     } else {
@@ -92,7 +92,79 @@ app.post("/process_login", function (req, res) {
 });
 
 app.post("/process_register", function (req, res) {
-    var qstr = req.body
+    var qstr = req.body
+    console.log(qstr);
+    var errors = [];
+
+    if (/^[A-Za-z]+$/.test(req.body.name)) {
+    console.log('valid name')
+    }
+    else {
+      errors.push('Use Letters Only for Full Name')
+    }
+    // validating name
+    if (req.body.name == "") {
+      errors.push('Invalid Full Name');
+    }
+    // length of full name is less than 30
+    if ((req.body.fullname.length > 30)) {
+      errors.push('Full Name Too Long')
+    }
+// length of full name is between 0 and 25 
+  if ((req.body.fullname.length > 25 && req.body.fullname.length <0)) {
+    errors.push('Full Name Too Long')
+  }
+
+    var reguser = req.body.username.toLowerCase(); 
+    if (typeof user_reg_data[reguser] != 'undefined') { 
+      errors.push('Username taken')
+    }
+
+    if (/^[0-9a-zA-Z]+$/.test(req.body.username)) {
+    console.log('valid username')
+    }
+    else {
+      errors.push('Letters And Numbers Only for Username')
+    }
+  
+    //password is min 8 characters long 
+    if ((req.body.password.length < 8 && req.body.username.length > 20)) {
+      errors.push('Password Too Short')
+    }
+    // check to see if passwords match
+    if (req.body.password !== req.body.repeat_password) { 
+      errors.push('Password Not a Match')
+    }
+
+    if (errors.length == 0) {
+            POST = req.body;
+            console.log('no errors');
+            var username = POST["username"];
+            user_reg_data[username] = {};
+            user_reg_data[username].name = username;
+            user_reg_data[username].password = POST['password'];
+            user_reg_data[username].email = POST['email'];
+            data = JSON.stringify(user_reg_data);
+            fs.writeFileSync(filename, data, "utf-8");
+            res.redirect('./invoice.html?' + queryString.stringify(req.query))
+    }
+    if (errors.length > 0) {
+        console.log(errors)
+        req.query.name = req.body.name;
+        req.query.username = req.body.username;
+        req.query.password = req.body.password;
+        req.query.repeat_password = req.body.repeat_password;
+        req.query.email = req.body.email;
+
+        req.query.errors = errors.join(';');
+        res.redirect('register.html?' + queryString.stringify(req.query))
+    }
+});
+
+
+/*
+app.post("/process_register", function (req, res) {
+    qstr = req.body
     console.log(qstr);
     var errors = [];
 
@@ -115,11 +187,12 @@ app.post("/process_register", function (req, res) {
   }
 
     var reguser = req.body.username.toLowerCase(); 
-    if (typeof users_reg_data[reguser] != 'undefined') { 
+    if (typeof user_reg_data[reguser] != 'undefined') { 
       errors.push('Username taken')
     }
 
-    if (/^[0-9a-zA-Z]+$/.test(req.body.username)) { }
+    if (/^[0-9a-zA-Z]+$/.test(req.body.username)) {
+    }
     else {
       errors.push('Letters And Numbers Only for Username')
     }
@@ -137,7 +210,7 @@ app.post("/process_register", function (req, res) {
        console.log('none');
        req.query.username = reguser;
        req.query.name = req.body.name;
-       res.redirect('./invoice.html?' + queryString.stringify(req.query))
+       res.redirect('/Invoice.html?' + queryString.stringify(req.query))
     }
     if (errors.length > 0) {
         console.log(errors)
@@ -148,23 +221,11 @@ app.post("/process_register", function (req, res) {
         req.query.email = req.body.email;
 
         req.query.errors = errors.join(';');
-        res.redirect('./register.html?' + queryString.stringify(req.query))
+        res.redirect('register.html?' + queryString.stringify(req.query))
     }
-else{
-    var username = POST["username"];
-    user_reg_data[username] = {};
-    user_reg_data[username].name = username;
-    user_reg_data[username].password = POST['password'];
-    user_reg_data[username].email = POST['email'];
-
-    data = JSON.stringify(user_data);
-    fs.writeFileSync(filename, data, "utf-8");
-    response.send("User " + username + " logged in");
-
-}
-
 });
 
+*/
 //from ex4 lab13
 //takes the data from the query string and puts it in the invoice
 app.post("/process_form", function (request, response) {

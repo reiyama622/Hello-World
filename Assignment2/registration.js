@@ -118,7 +118,7 @@ app.post("/register", function (request, response) {
 
         data = JSON.stringify(user_data);
         fs.writeFileSync(filename, data, "utf-8");
-
+        res.redirect('./invoice.html?' + queryString.stringify(req.query))
         response.send("User " + username + " logged in");
     }else{
         response.send(`You have these errors with your registration. <br> Username: ${usernameErrors} <br> Password: ${passErrors} <br> Email: ${emailErrors}`)
