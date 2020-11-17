@@ -38,16 +38,20 @@ function validUsernameCheck(username){
        return false
     }
 }
+
 /*check to see if the username is taken*/
-var alreadyUsed = false;
+/*
+function alreadyUsed(username){
+    var usernameInput = POST["username"];
 for (var i=0; i < filename.length; i++) {
-    if (filename[i].name == POST["username"]){
+    if (filename[i].name == username){
         usernameErrors.push('This Username is already taken');
-        alreadyUsed = true;
+         return true;
     } else{
-        alreadyUsed = false;
+        return false;
     }
 }
+*/
 /*
 check password
 minimum of six characters
@@ -105,7 +109,7 @@ app.post("/register", function (request, response) {
     // process a simple register form
     POST = request.body;
     console.log("Got register POST");
-    if ((POST["username"] != undefined && POST['password'] != undefined) && (validUsernameCheck(POST["username"])==true && passwordCheck(POST["password"])==true && validateEmail(POST["emial"])==true) && alreadyUsed==false) {          // Validate user input
+    if ((POST["username"] != undefined && POST['password'] != undefined) && (validUsernameCheck(POST["username"])==true && passwordCheck(POST["password"])==true && validateEmail(POST["email"])==true) /*&& alreadyUsed==false*/) {          // Validate user input
         var username = POST["username"];
         user_data[username] = {};
         user_data[username].name = username;

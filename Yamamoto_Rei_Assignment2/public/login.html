@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script>
+        let params = (new URL(document.location)).searchParams;
+
+        window.onload = function () {
+            if (params.has('LogError')) {
+                alert('Invalid Username or Passowrd');
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+   <style>
+        header{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        body {
+            background-color: #faebd7;
+            text-align: center;
+            font-size: 20px;
+        }
+        form{
+    text-align: center;
+}
+input[type=text], input[type=password], input[type=email] {
+        text-align: center;
+        font-size: 15px;
+        width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+        
+    }
+    input[type=submit] {
+        font-weight: bold;
+        font-size: 70px;
+        color:black;
+        margin-top: 25px;
+    }
+
+   /* styling the navbar */
+    .topnav {
+      overflow: hidden;
+      background-color: #B4CDCD;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    /* Changes color on hover*/
+    .topnav a:hover {
+      background-color: #7A8B8B;
+      color: black;
+    }
+    
+    </style>
+   
+    
+</head>
+
+<body> 
+    <div class="topnav"> 
+        <a class="active" href="./index.html">Home</a>
+        <a href="./Products_display.html">Products</a>
+       
+    
+      </div>
+
+    <h1>Ma Belle Jewelry Login Page!</h1>
+    <p>To buy my products you must<br> login or register as a member</p>
+    <form name="login" action="process_login" method="POST">
+        <div class="container"><br>
+            <input type="text" name="username" id="username" size="40" placeholder="Enter Username" required><br>
+            <input type="password" name="password" size="40" placeholder="Enter Password" onkeyup="" required><br> 
+            
+            <input type="submit" value="Login" name="login">
+            
+            
+        </div>
+    </form>
+    <script>
+        
+       login.action += document.location.search; // action plus the query string so info won't be lost from the intitial display page
+    </script>
+</body>
+
+
+<h2>Register Here!</h2>
+
+<body>
+
+    <input type="button" name="newuser" value="New User"
+        onclick="window.location='./register.html' + document.location.search;">
+
+
+</body>
+
+</html>

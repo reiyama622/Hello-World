@@ -11,7 +11,19 @@ var queryString = require('query-string');
 var express = require('express'); 
 var app = express(); 
 var myParser = require("body-parser"); 
+// So it'll load querystring// 
+var filename = 'user_data.json'; // new//
+var fs = require('fs'); //Load file system//
+//added just now
+if (fs.existsSync(filename)) {
+    var stats = fs.statSync(filename) //gets stats from file
+    console.log(filename + 'has' + stats.size + 'characters');
 
+    data = fs.readFileSync(filename, 'utf-8');
+    var users_reg_data = JSON.parse(data);
+} else { 
+    console.log(filename + 'does not exist!');
+}
 //writes the requests in the console
 app.all('*', function (request, response, next) { 
     console.log(request.method + ' to ' + request.path);
