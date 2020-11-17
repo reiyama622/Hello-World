@@ -24,21 +24,42 @@
       <title>Your Order</title>
       <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
       <link href="invoiceStyle.css" rel="stylesheet">
+      <style>
+      /* styling the navbar */
+      .topnav {
+        overflow: hidden;
+        background-color: pink;
+      }
       
+      .topnav a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+    </style>
     </head>
   
     <body>
+      <div class="topnav"> 
+        <a class="active" href="./index.html">Home</a>
+        <a href="./Products_display.html">Products</a>
+        <a href="./register.html">Register</a>
+        <a href="./login.html">Login</a>
+    </div>
+    <br>
       <div id="table">
       <div id="header">
         <h1>Your Order</h1>
       </div>
-      
         <table>
               <tr style="font-weight: 400; background-color: pink;">
-                <th style="text-align: center;" width="43%">Product</th>
-                <th style="text-align: center;" width="11%">Pounds</th>
-                <th style="text-align: center;" width="13%">Price Per Pound</th>
-                <th style="text-align: center;" width="54%">Total Price</th>
+                <td align="center">Product</td>
+                <td align="center">Pounds</td>
+                <td align="center">Price Per Pound</td>
+                <td align="center">Total Price</td>
               </tr>
               <script>
                 //creates invoice table

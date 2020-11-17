@@ -1,34 +1,42 @@
 /* 
-Copied from info_server_Ex4.js from Lab13
+Copied parts from Lab13
 */
 
+//data from product_data in variable data
 var data1 = require('../Yamamoto_Rei_Assignment1/public/product_data.js');
+//set products to equal the products from the data variable
 var products = data1.products; 
-const queryString = require('query-string'); //read variable 'queryString' as the loaded query-string module//
+//query string into an object
+var queryString = require('query-string'); 
+
 var express = require('express'); //load and cache express module//
 var app = express(); //set module to variable 'app'//
 var myParser = require("body-parser"); //load and cache body parser module//
-// So it'll load querystring//
+// So it'll load querystring
 var filename = 'user_data.json'; // new//
 var fs = require('fs'); //Load file system//
-//added just now
-if (fs.existsSync(filename)) {
-    var data = fs.statSync(filename) //gets stats from file
-    console.log(filename + 'has' + data.size + 'characters');
 
-    data = fs.readFileSync(filename, 'utf-8');
+//if the file exists read it 
+if (fs.existsSync(filename)) {
+    var data = fs.statSync(filename)
+    console.log("Success! We got: " + filename);
+    //console.log(filename + 'has' + data.size + 'characters');
+    data = fs.readFileSync(filename, 'utf-8');
     var user_reg_data = JSON.parse(data);
 } else { 
-    console.log(filename + 'does not exist!');
+    console.log("Sorry can't read file " + filename);
+    exit();
 }
-
-app.all('*', function (request, response, next) { //for all request methods//
-    console.log(request.method + ' to ' + request.path); //type in the console the request method and the path//
-    next(); //keep going
+//writes the requests in the console and the path
+app.all('*', function (request, response, next) { 
+    console.log(request.method + ' to ' + request.path);
+    next();
 });
 
 app.use(myParser.urlencoded({ extended: true })); //get data in the body//
 
+//from ex4 lab13
+//takes the data from the query string and puts it in the invoice
 app.post("/process_purchase", function (request, response) {
         let POST = request.body; // data would be packaged in the body//
     
@@ -44,7 +52,7 @@ app.post("/process_purchase", function (request, response) {
             // if all quantities are valid, generate the invoice// 
             const stringified = queryString.stringify(POST);
             if (hasvalidquantities && hasquantities) {
-                response.redirect("./register.html?"+stringified); // using the invoice.html and all the data that is input//
+                response.redirect("./login.html?"+stringified); // using the invoice.html and all the data that is input//
             }  
             else {
                 response.redirect("./products_display.html?" + stringified)
@@ -61,7 +69,7 @@ app.post("/process_purchase", function (request, response) {
         if (parseInt(q) != q) errors.push('Not an integer!'); //check if value is a whole number//
         return returnErrors ? errors : (errors.length == 0);
     }
-// login stuff starts here , add more comments and reference// 
+// Process a login
 app.post("/process_login", function (req, res) {
     var LogError = [];
     console.log(req.query);
@@ -95,31 +103,23 @@ app.post("/process_register", function (req, res) {
     var qstr = req.body
     console.log(qstr);
     var errors = [];
-
+    //validating full name only letters
     if (/^[A-Za-z]+$/.test(req.body.name)) {
     console.log('valid name')
     }
     else {
       errors.push('Use Letters Only for Full Name')
     }
-    // validating name
+    // validating defined Full name
     if (req.body.name == "") {
       errors.push('Invalid Full Name');
     }
-    // length of full name is less than 30
-    if ((req.body.fullname.length > 30)) {
-      errors.push('Full Name Too Long')
-    }
-// length of full name is between 0 and 25 
-  if ((req.body.fullname.length > 25 && req.body.fullname.length <0)) {
-    errors.push('Full Name Too Long')
-  }
-
+    //check if username is taken
     var reguser = req.body.username.toLowerCase(); 
     if (typeof user_reg_data[reguser] != 'undefined') { 
       errors.push('Username taken')
     }
-
+    //chack for valid username using only letters and numbers
     if (/^[0-9a-zA-Z]+$/.test(req.body.username)) {
     console.log('valid username')
     }
@@ -135,7 +135,7 @@ app.post("/process_register", function (req, res) {
     if (req.body.password !== req.body.repeat_password) { 
       errors.push('Password Not a Match')
     }
-
+    //if there are no errors, register user
     if (errors.length == 0) {
             POST = req.body;
             console.log('no errors');
@@ -148,6 +148,7 @@ app.post("/process_register", function (req, res) {
             fs.writeFileSync(filename, data, "utf-8");
             res.redirect('./invoice.html?' + queryString.stringify(req.query))
     }
+    //if there are errors do not register
     if (errors.length > 0) {
         console.log(errors)
         req.query.name = req.body.name;
@@ -240,7 +241,7 @@ app.post("/process_form", function (request, response) {
         } 
         const stringified = queryString.stringify(POST);
         if (hasvalidquantities && hasquantities) {
-            response.redirect("./register.html?"+stringified); 
+            response.redirect("./login.html?"+stringified); 
         }  
         else {response.send('You did not enter a valid quantity')} 
     }
@@ -262,4 +263,4 @@ function isNonNegInt(q, returnErrors = false) {
     return returnErrors ? errors : (errors.length == 0);
 }
 app.use(express.static('./public')); //Creates a static server using express from the public folder
-app.listen(8080, () => console.log(`listen on port 8080`))
+app.listen(8080, () => console.log(`listening on port 8080`));
