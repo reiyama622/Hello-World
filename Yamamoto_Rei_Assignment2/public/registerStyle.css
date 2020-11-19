@@ -1,0 +1,53 @@
+header{
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+body {
+    font-family: 'Poiret One', cursive;
+    color: pink;
+    background-color:white;
+    text-align: center;
+}
+form{
+    text-align: center;
+}
+/* styling the input */ 
+input[type=text], input[type=password], input[type=email] {
+    text-align: center;
+    font-size: 15px;
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-family: 'Poiret One', cursive;
+}
+
+input[type=submit]{
+    font-size: 40px;
+    background-color: pink;
+    color:white;
+    border: none;
+    margin: 25, 10, 25, 10;
+    font-family: 'Poiret One', cursive;
+}
+input[type=button] {
+    font-size: 20px;
+    background-color: pink;
+    color:white;
+    border: none;
+    font-family: 'Poiret One', cursive;
+}
+.topnav {
+    overflow: hidden;
+    background-color: pink;
+}
+
+.topnav a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}

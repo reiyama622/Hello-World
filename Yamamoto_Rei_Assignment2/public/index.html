@@ -8,25 +8,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
     <title>Fruit Stand Home</title>
     <style>
-      body,h1,h2,h3,h4,h5,h6,p {font-family: 'Poiret One', cursive;color:pink}
+      h1,h2,h3,h4,h5,h6,p {
+        font-family: 'Poiret One', cursive;
+        color:pink;
+      }
       body {
+        font-family: 'Poiret One', cursive;
+        color:pink;
         background-color:white;
         text-align: center;
       }
+      input[type=button] {
+        font-size: 20px;
+        background-color: pink;
+        color:white;
+        border: none;
+        font-family: 'Poiret One', cursive;
+    }
       </style>
 </head>
 <body style="font-family: 'Poiret One', cursive; color: beige;font-size: 30px; padding-top: 10px;">
     <h1>Rei's Fruit Stand</h1>
-      <!-- About Section -->
-  <div class="w3-container w3-padding-32 w3-center">  
+  <div>  
     <img src="Images/dancingfruit.gif" alt="image" height="40%" width="40%" alt="Me" class="w3-image" style="display:block;margin:auto" width="90%" height="533">
     <div class="w3-padding-32">
       <h4><b>So fresh it's bananas</b></h4>
     </div>
   </div>
-    <h1>
-      <div style="background-color: pink; color: white; font-size:20px; width: 600px; margin-left: auto; margin-right: auto;"><a href="products_display.html">Enter our Store</a></div>
-    </h1>
+      <input type="button" name="enterStore" value="Enter Our Store" onclick="window.location='./products_display.html' + document.location.search;">
    
 </body>
 </html>

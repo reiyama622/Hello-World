@@ -1,11 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <script>
         let params = (new URL(document.location)).searchParams;
 
-        window.onload = function () { // creating the function for window.onload
-            //if there are errors in the registration data , tell the user
+        window.onload = function () {
+            //if there are errors registering, send an alert
             if (params.has('errors')) {
 
                 console.log("invalid");
@@ -17,63 +17,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link href="registerStyle.css" rel="stylesheet">
     <title>Registration Page</title>
-    <style>
-        header{
-            text-align: center;
-            font-size: 50px;
-            margin-bottom: 30px;
-        }
-        body {
-            font-family: 'Poiret One', cursive;
-            color: pink;
-            background-color:white;
-            text-align: center;
-        }
-        form{
-    text-align: center;
-}
-     /* referenced from w3schools website, makes the input boxes centered*/ 
-input[type=text], input[type=password], input[type=email] {
-        text-align: center;
-        font-size: 15px;
-        width: 60%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        font-family: 'Poiret One', cursive;
-        
-    }
-
-input[type=submit]{
-        font-size: 40px;
-        background-color: pink;
-        color:white;
-        border: none;
-        margin-top: 25px;
-        font-family: 'Poiret One', cursive;
-    }
-    input[type=button] {
-        font-size: 20px;
-        background-color: pink;
-        color:white;
-        border: none;
-        font-family: 'Poiret One', cursive;
-    }
-    .topnav {
-      overflow: hidden;
-      background-color: pink;
-    }
-    
-    .topnav a {
-      float: left;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-size: 17px;
-    }
-    </style>
 </head>
 
 <body>
@@ -87,6 +32,7 @@ input[type=submit]{
         Create an account before you purchase!
     </header>
     <div>
+        <!--NOT VALIDATION JUST A BUFFER-->
         <form method="POST" action="process_register" name="Register">
             <input type="text" name="fullname" size="40" pattern="[a-zA-Z]+[ ]+[a-zA-Z]+"
                 placeholder="Enter First & Last Name"><br />
@@ -99,7 +45,6 @@ input[type=submit]{
                 title="6 Characters Minimum" placeholder="Enter Password"><br />
             <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{5,}" required
                 title="6 Characters Minimum" placeholder="Repeat Password"><br />
-
             <input type="submit" value="Register" id="submit">
         </form>
         <div style="margin-left: auto; margin-right: auto;">

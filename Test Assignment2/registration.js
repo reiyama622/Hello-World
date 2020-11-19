@@ -109,7 +109,7 @@ app.post("/register", function (request, response) {
     // process a simple register form
     POST = request.body;
     console.log("Got register POST");
-    if ((POST["username"] != undefined && POST['password'] != undefined) && (validUsernameCheck(POST["username"])==true && passwordCheck(POST["password"])==true && validateEmail(POST["email"])==true) /*&& alreadyUsed==false*/) {          // Validate user input
+    if ((POST["username"] != undefined && POST['password'] != undefined) && (validUsernameCheck(POST["username"])==true && passwordCheck(POST["password"])==true && validateEmail(POST["email"])==true)) {          // Validate user input
         var username = POST["username"];
         user_data[username] = {};
         user_data[username].name = username;
