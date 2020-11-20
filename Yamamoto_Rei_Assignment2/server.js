@@ -67,9 +67,12 @@ function isNonNegInt(q, returnErrors = false) {
     if (q == ""){ 
         q = 0; 
     }
-    if (Number(q) != q) errors.push('Not a number!'); //check if value is a number//
-    if (q < 0) errors.push('Negative value!'); //check if value is a positive number//
-    if (parseInt(q) != q) errors.push('Not an integer!'); //check if value is a whole number//
+     //check if it is a number
+    if (Number(q) != q) errors.push('Not a number!');
+     //check if value is a positive number
+    if (q < 0) errors.push('Negative value!');
+     //check if value is a whole number
+    if (parseInt(q) != q) errors.push('Not an integer!');
     return returnErrors ? errors : (errors.length == 0);
 }
 // Process a login
@@ -77,22 +80,27 @@ app.post("/process_login", function (request, response) {
     var loginError = [];
     console.log(request.query);
     var usernameInput = request.body.username.toLowerCase();
-//check if the username is in the JSON file
+    //check if the username is in the JSON file
     if (typeof user_data[usernameInput] != 'undefined') {
         //if the password matched the username direct to invoice
         if (user_data[usernameInput].password == request.body.password) {
             request.query.username = usernameInput;
+            //log to the console
             console.log(user_data[request.query.username].name);
             request.query.name = user_data[request.query.username].name
+            //direct to invoice if log in is valid (matches username on file and matches password)
             response.redirect('./invoice.html?' + queryString.stringify(request.query));
             return;
-            //if usermane or password is invalid redirect to login
+        //if usermane or password is invalid redirect to login
         } else {
+            //logs to the console the login errors
             console.log(loginError);
             request.query.username= usernameInput;
             request.query.name= user_data[usernameInput].name;
+            //joins the errors with a ;
             request.query.loginError=loginError.join(';');
         }
+    //logs to the console if there is an error with the username (does not exist)
     } else {
         loginError.push = ('Invalid Username');
         request.query.loginError=loginError.join(';');
@@ -104,6 +112,7 @@ app.post("/process_register", function (request, response) {
     POST = request.body;
     console.log(POST);
     var errors = [];
+
     /*Validate user registration input values*/
     //validating full name only letters and defined
     if (/^[A-Za-z]+$/.test(POST['name']) || (POST['name'] != "undefined")) {
@@ -112,7 +121,7 @@ app.post("/process_register", function (request, response) {
         errors.push('Use Letters Only for Full Name, Full Name undefined');
     }
 
-    //check is username is between 4 and 10 characters
+    //check is username is between 4 and 10 characters and only letters and numbers
     if ((/.{3,10}/ .test(POST['username'])) && (/^[a-zA-Z0-9]*$/.test(POST['username']))) {
         console.log('valid username');
     }else {
@@ -127,14 +136,14 @@ app.post("/process_register", function (request, response) {
         console.log('New username');
     }  
         
-    //validate email address  
+    //validate email address checks that it is in the correct format
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(POST['email'])) {
         console.log('valid email');
     }else {
         errors.push('Invalid email');
     }
 
-    //password is min 6 characters long 
+    //validate the password makes sure that the  password is min 6 characters long 
     if (POST['password'].length < 6) {
         errors.push('Password Too Short');
     }else{
@@ -151,6 +160,8 @@ app.post("/process_register", function (request, response) {
     //if there are no errors, register user
     if (errors.length == 0) {
         console.log('no errors');
+        //post to the JSON file the registered user data
+        //username, password, email
         var username = POST["username"];
         user_data[username] = {};
         user_data[username].name = username;
@@ -158,6 +169,7 @@ app.post("/process_register", function (request, response) {
         user_data[username].email = POST['email'];
         data = JSON.stringify(user_data);
         fs.writeFileSync(filename, data, "utf-8");
+        //if valid registration data, redirect to the invoice with the quantities chosen on the store page
         response.redirect('./invoice.html?' + queryString.stringify(request.query));
     }
     //if there are errors do not register
@@ -171,6 +183,7 @@ app.post("/process_register", function (request, response) {
 //takes the data from the query string and puts it in the invoice
 app.post("/process_form", function (request, response) {
     POST = request.body; 
+    //if the quantity input is not undefined, loop through and post the values to quesy string.
     if (typeof POST['checkOut'] != 'undefined') {
         var hasValidQuantities=true;
         var hasQuantities=false;
@@ -180,9 +193,11 @@ app.post("/process_form", function (request, response) {
             hasValidQuantities = hasValidQuantities && isNonNegInt(qty);    
         } 
         const stringified = queryString.stringify(POST);
+        //redirects to the login page if the quantities are valid
         if (hasValidQuantities && hasQuantities) {
             response.redirect("./login.html?"+stringified); 
         }  
+        //outputs 
         else {response.send('You did not enter a valid quantity')} 
     }
 });
