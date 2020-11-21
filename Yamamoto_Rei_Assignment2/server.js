@@ -39,7 +39,7 @@ app.use(myParser.urlencoded({ extended: true }));
 //from ex4 lab13
 //takes the data from the query string and puts it in the invoice
 app.post("/process_purchase", function (request, response) {
-    POST = request.body;
+    let POST = request.body;
     if (typeof POST['submitPurchase'] != 'undefined') {
         var hasvalidquantities=true; 
         var hasquantities=false
@@ -60,21 +60,6 @@ app.post("/process_purchase", function (request, response) {
     }
     }
 });
-    
- //repeats the isNonNegInt function from the index.html file because there is no relation between the index.html page and server//
-function isNonNegInt(q, returnErrors = false) {
-    var errors = []; // assume that quantity data is valid//
-    if (q == ""){ 
-        q = 0; 
-    }
-     //check if it is a number
-    if (Number(q) != q) errors.push('Not a number!');
-     //check if value is a positive number
-    if (q < 0) errors.push('Negative value!');
-     //check if value is a whole number
-    if (parseInt(q) != q) errors.push('Not an integer!');
-    return returnErrors ? errors : (errors.length == 0);
-}
 // Process a login
 app.post("/process_login", function (request, response) {
     var loginError = [];
@@ -109,8 +94,8 @@ app.post("/process_login", function (request, response) {
 });
 //to precess the registration page
 app.post("/process_register", function (request, response) {
-    POST = request.body;
-    console.log(POST);
+    let POST = request.body;
+    console.log(request.query);
     var errors = [];
 
     /*Validate user registration input values*/
@@ -134,7 +119,7 @@ app.post("/process_register", function (request, response) {
         errors.push('Username taken');
     }else{
         console.log('New username');
-    }  
+    }  
         
     //validate email address checks that it is in the correct format
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(POST['email'])) {
@@ -152,13 +137,13 @@ app.post("/process_register", function (request, response) {
 
     // check to see if passwords match
     if (POST['password'] == POST['repeat_password']) { 
-          console.log('passwords match');
+          console.log('passwords match');
     }else{
         errors.push('Passwords do not match');
     }
 
     //if there are no errors, register user
-    if (errors.length == 0) {
+    if (errors.length == 0) {
         console.log('no errors');
         //post to the JSON file the registered user data
         //username, password, email
@@ -181,8 +166,8 @@ app.post("/process_register", function (request, response) {
 
 //from ex4 lab13
 //takes the data from the query string and puts it in the invoice
-app.post("/process_form", function (request, response) {
-    POST = request.body; 
+app.post("/process_form", function(request, response) {
+    let POST = request.body; 
     //if the quantity input is not undefined, loop through and post the values to quesy string.
     if (typeof POST['checkOut'] != 'undefined') {
         var hasValidQuantities=true;
