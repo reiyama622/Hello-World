@@ -3,7 +3,7 @@ Copied parts from Lab13 and Lab14
 */
 
 //data from product_data in variable data
-var data1 = require('../Yamamoto_Rei_Assignment1/public/product_data.js');
+var data1 = require('../Yamamoto_Rei_Assignment2/public/product_data.js');
 //set products to equal the products from the data variable
 var products = data1.products; 
 //query string into an object
