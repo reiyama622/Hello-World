@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+
+        window.onload = function () {
+            //if there are errors registering, send an alert
+            if (params.has('errors')) {
+
+                console.log("invalid");
+                alert('Fix the following errors: \n' + params.get('errors'));
+            }
+        }    
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link href="registerStyle.css" rel="stylesheet">
+    <title>Registration Page</title>
+</head>
+
+<body>
+    <div class="topnav"> 
+        <a class="active" href="./products_display.html">Home</a>
+        <a href="./register.html">Register</a>
+        <a href="./login.html" onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
+    </div>
+    <header>
+        Create an account before you purchase!
+    </header>
+    <div>
+        <!--NOT VALIDATION JUST A BUFFER copied from W3schools-->
+        <form method="POST" action="process_register" name="register">
+            <input type="text" name="fullname" size="40" pattern="[a-zA-Z]+[ ]+[a-zA-Z]+"
+                placeholder="Enter First & Last Name"><br />
+            <input type="text" name="username" size="40" pattern="^[a-zA-Z0-9]{3,10}$" required
+                title="Minimum 4 Characters, Maximum 10 Characters, Numbers/Letters Only"
+                placeholder="Enter Username"><br />
+            <input type="email" name="email" size="40" placeholder="Enter Email"
+                pattern="[a-z0-9._]+@[a-z0-9]+\.[a-z]{3,}$" required title="Please enter valid email."><br />
+            <input type="password" id="password" name="password" size="40" pattern=".{5,}" required
+                title="6 Characters Minimum" placeholder="Enter Password"><br />
+            <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{5,}" required
+                title="6 Characters Minimum" placeholder="Repeat Password"><br />
+            <input type="submit" value="Register" id="submit">
+        </form>
+        <div style="margin-left: auto; margin-right: auto;">
+            <p>Already have an account?</p>
+            <input type="button" name="existingaccount" value="Click here to log-in" onclick="window.location='./login.html' + document.location.search;">
+        </div>
+
+        <script>
+            register.action += document.location.search;
+        </script>
+    </div>
+</body>
+
+</html>

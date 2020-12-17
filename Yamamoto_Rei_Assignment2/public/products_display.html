@@ -19,7 +19,8 @@
 </script>
 
 <!DOCTYPE html>
-<!--Used a template from W3schools Based off of SmartPhoneProducts1-->
+<!--Used a template from W3schools 
+  Based off of SmartPhoneProducts1-->
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -54,6 +55,10 @@
   <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">About Us</a>
   <a href="./register.html" onclick="w3_close()" class="w3-bar-item w3-button">Register</a>
   <a href="./login.html" onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
+          <a href="./red fruits.html">Red Fruits</a>
+        <a href="./orange.html">Orange Fruits</a>
+        <a href="./yellow.html">Yellow Fruits</a>
+        <a href="./purple.html">Purple Fruits</a>
 </nav>
 
 <!-- Top menu -->
@@ -74,7 +79,7 @@
         for (i = 0; i < products.length; i++) {
             document.write(`
             <div class="w3-quarter">
-                <h2>${products[i].model}</h2>
+                <h2>${products[i].product}</h2>
                 <div id="price" style="background-color:pink;color:white;width:100%;">
                 <p>$${products[i].price.toFixed(2)}/lb</p>
                 </div>

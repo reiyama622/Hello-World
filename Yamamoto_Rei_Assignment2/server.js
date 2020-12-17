@@ -1,5 +1,5 @@
 /* 
-Copied parts from Lab13 and Lab14
+Copied parts from Lab13 and Lab14 from https://dport96.github.io/ITM352/ website when completed the lab in class.
 */
 
 //data from product_data in variable data
