@@ -1,4 +1,7 @@
 /* 
+  Asssignment3 ITM352 Fall 2020 
+  Rei Yamamoto
+  This is the server for my website.
 Copied parts from Lab13 and Lab14 from https://dport96.github.io/ITM352/ website when completed the lab in class.
 */
 
@@ -38,7 +41,7 @@ app.all('*', function (request, response, next) {
     console.log(request.method + ' to ' + request.path);
     next();
 });
-
+//referenced from https://github.com/melanie1031/ITM352Spring20/blob/master/Yang_Melanie_Assignment3.zip. Referenced code for lines 42-56. Used to create new product pages out of the different data in products_data.js
 // Gennerates each page where there is a product
 app.get("*/:ptype[.]html", function (request, response, next) {
     if (typeof products[request.params.ptype] == 'undefined')
@@ -46,11 +49,11 @@ app.get("*/:ptype[.]html", function (request, response, next) {
       next();
       return;
     }
-    // Referenced from professor Port // 
+     
     var str = '{}'; 
     //Used template to load pages from the server, from professor 
      var pagestring = fs.readFileSync('./displayproducts.html', 'utf-8'); 
-     pagestring = `<script> var cart = ${str}; </script>` + pagestring; //so the cart shows in the console
+     pagestring = `<script> var cart = ${str}; </script>` + pagestring; 
      pagestring = `<script> var product_type = '${request.params.ptype}'; </script>` + pagestring;
      response.send(pagestring);
   });
@@ -124,7 +127,7 @@ app.get("/invoice.html", function (request, response) {
   });
 
 
-//to precess the registration page
+//to process the registration page
 app.post("/process_register", function (request, response) {
     let POST = request.body;
     console.log(request.query);
@@ -222,11 +225,11 @@ app.post("/process_form", function(request, response) {
         else {response.send('You did not enter a valid quantity')} 
     }
 });
-//copied from Port Display_and_mail_invoice_example from the ITM352 Fall 2020 cyber duck server.
+//copied from Port Display_and_mail_invoice_example from the ITM352 Fall 2020 cyber duck server. Copied lines 229-274.
 app.get("/checkout", function (request, response) {
     var user_email = request.query.email; // email address in querystring
   // Generate HTML invoice string
-    var invoice_str = `Thank you for your order ${user_email}!<table border><th>Quantity</th><th>Item</th>`;
+    var invoice_str = `<h1 style= "color:pink;text-align:center;">Thank you for your order ${user_email}!</h1><table style= "color:pink; align: center;margin: auto;"><th>Quantity</th><th>Item</th>`;
     var cart = request.session[request.params.ptype];
     for(product_type in products) {
       for(var i=0; i<products[product_type].length; i++) {
@@ -252,7 +255,7 @@ app.get("/checkout", function (request, response) {
       }
     });
     var mailOptions = {
-        from: 'phoney_store@bogus.com',
+        from: 'reisFruitstand@bogus.com',
         to: user_email,
         subject: 'Your phoney invoice',
         html: invoice_str
@@ -260,9 +263,9 @@ app.get("/checkout", function (request, response) {
     
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          invoice_str += '<br>There was an error and your invoice could not be emailed :(';
+          invoice_str += '<h1 style= "color:pink; text-align:center;"><br>There was an error and your invoice could not be emailed :(</h1>';
         } else {
-          invoice_str += `<br>Your invoice was mailed to ${user_email}`;
+          invoice_str += `<h1 style= "color:pink; text-align:center;"><br>Your invoice was mailed to ${user_email}</h1>`;
         }
         response.send(invoice_str);
       });
@@ -284,5 +287,6 @@ function isNonNegInt(q, returnErrors = false) {
     if (parseInt(q) != q) errors.push('Not an integer!'); 
     return returnErrors ? errors : (errors.length == 0);
 }
-app.use(express.static('./public')); //Creates a static server using express from the public folder
+//Creates a static server using express from the public folder
+app.use(express.static('./public')); 
 app.listen(8080, () => console.log(`listening on port 8080`));

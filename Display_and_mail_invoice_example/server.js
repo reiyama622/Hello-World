@@ -30,7 +30,7 @@ app.get("/add_to_cart", function (request, response) {
 app.get("/get_cart", function (request, response) {
   response.json(request.session.cart);
 });
-
+/*
 app.get("/checkout", function (request, response) {
   var user_email = request.query.email; // email address in querystring
 // Generate HTML invoice string
@@ -63,7 +63,7 @@ app.get("/checkout", function (request, response) {
     subject: 'Your phoney invoice',
     html: invoice_str
   };
-
+*/
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       invoice_str += '<br>There was an error and your invoice could not be emailed :(';

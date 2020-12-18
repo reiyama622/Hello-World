@@ -13,7 +13,13 @@ var red =[
     "product":"Watermelons",  
     "price": 0.33,  
     "image": "./Images/watermelon.jpeg"
-    }]
+    },
+    {  
+      "product":"Cherries",  
+      "price": 0.63,  
+      "image": "./Images/cherries.jpeg"
+      }
+  ]
 var yellow=[
   {  
   "product":"Bananas",  
@@ -24,7 +30,17 @@ var yellow=[
     "product":"Pineapples",  
     "price": 4.28,  
     "image": "./Images/pineapple.jpeg"
-    }]
+    },
+    {  
+      "product":"Lemons",  
+      "price": 1.23,  
+      "image": "./Images/lemons.jpg"
+      },
+      {  
+        "product":"Starfruits",  
+        "price": 1.10,  
+        "image": "./Images/starfruit.jpeg"
+        }]
     var orange = [
   {  
   "product":"Mangos",  
@@ -35,13 +51,39 @@ var yellow=[
   "product":"Oranges",  
   "price": 1.33,  
   "image": "./Images/orange.jpg"
-  }]
+  },
+  {  
+    "product":"Peaches",  
+    "price": 1.00  ,
+    "image": "./Images/peaches.jpeg"
+    },
+    {  
+      "product":"Apricots",  
+      "price": 2.00,  
+      "image": "./Images/apricot.jpeg"
+      }
+  ]
   var purple=[
   {  
     "product":"Grapes",  
     "price": 2.03,  
     "image": "./Images/Grapes.jpg"
-    }]
+    },
+    {  
+      "product":"Blueberries",  
+      "price": 0.25,  
+      "image": "./Images/blue berries.jpeg"
+      },
+      {  
+        "product":"Figs",  
+        "price": 1.15,  
+        "image": "./Images/fig.jpeg"
+        },
+        {  
+          "product":"Black Berries",  
+          "price": 0.67,  
+          "image": "./Images/black berries.jpeg"
+          }]
     var products = {
       "red": red , 
       "yellow": yellow,

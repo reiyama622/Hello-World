@@ -1,13 +1,23 @@
+<!--
+  Asssignment3 ITM352 Fall 2020 
+  Rei Yamamoto
+  This is the template to display the different products. When you click on the products tabs in the nav bar you can access the different products pages. 
+-->
 <script src="./product_data.js" type="text/javascript"></script>
 
 <script>
     //Referenced from assignment 1 examples
     function isNonNegInt(q, return_errors = false) {
-        errors = []; // assume no errors at first
-        if (q == '') q = 0; // handle blank inputs as if they are 0
-        if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); // Check if string is a number value
-        else if (q < 0) errors.push('<font color="red">Negative value!</font>'); // Check if it is non-negative
-        else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); // Check that it is an integer
+        // assume no errors at first
+        errors = []; 
+         // handle blank inputs as if they are 0
+        if (q == '') q = 0;
+        // Check if string is a number value
+        if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); 
+        // Check if it is non-negative
+        else if (q < 0) errors.push('<font color="red">Negative value!</font>');
+         // Check that it is an integer 
+        else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>');
         return return_errors ? errors : (errors.length == 0);
     }
     function checkQuantityTextbox(theTextbox) {
@@ -29,11 +39,14 @@
    }
 
     window.onload = function () {
-        let params = (new URL(document.location)).searchParams; // get the query string which has the form data
+        // get the query string which has the form data
         // form was submitted so check that quantities are valid then redirect to invoice if ok.
+        let params = (new URL(document.location)).searchParams; 
         if (params.has('submitPurchase')) {
-            has_errors = false; // assume quantities are valid from the start
-            total_qty = 0; // need to check if something was selected so we will look if the total > 0
+             // assume quantities are valid from the start
+            has_errors = false;
+            // need to check if something was selected so we will look if the total > 0
+            total_qty = 0; 
             //For every product in the array, write the product number, display its image and name, and list price
             for (i = 0; i < products.length; i++) {
                 if (params.has(`quantity${i}`)) {
@@ -42,18 +55,19 @@
                     product_form[`quantity${i}`].value = a_qty;
                     total_qty += a_qty;
                     if (!isNonNegInt(a_qty)) {
-                        has_errors = true; // oops, invalid quantity
-                        checkQuantityTextbox(product_form[`quantity${i}`]); // show where the error is
+                        has_errors = true; 
+                        checkQuantityTextbox(product_form[`quantity${i}`]);
                     }
                 }
             }
             // Now respond to errors or redirect to invoice if all is ok
             if (has_errors) {
+                //If no quantities selected gives an alert
                 alert("Please enter only valid quantities!");
-            } else if (total_qty == 0) { // no quantity selections, just give a general alert
+            } else if (total_qty == 0) { 
                 alert("Please select some quantities!");
-            } else { // all good to go!
-                window.location = `./login.html.html${document.location.search}`; //Redirects itself
+            } else { 
+                window.location = `./login.html.html${document.location.search}`; 
                 window.stop;
             }
         }
@@ -71,7 +85,7 @@
     <link href="products-style.css" rel="stylesheet">
     <title>Store</title>
     <style>
-            /*styling the navbar*/
+    /*styling the navbar*/
     .topnav {
         overflow: hidden;
         background-color: pink;
