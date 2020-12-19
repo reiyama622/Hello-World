@@ -1,0 +1,177 @@
+<!--
+  Products display page, lists home, about the shop, list of products to choose from (cheese, bread, cake, pastries, and sandwiches), and a contact us page
+-->
+<script src="/product_data.js" type="text/javascript"></script>
+<script>
+    //Referenced from assignment 1 examples
+    function isNonNegInt(q, return_errors = false) {
+        errors = []; // will assume there are no errors//
+        if (q == '') q = 0; // handle blank inputs as if they are 0//
+        if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); // Check if string is a number value//
+        else if (q < 0) errors.push('<font color="red">Negative value!</font>'); // Check if it is non-negative//
+        else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); // Check that it is an integer//
+        return return_errors ? errors : (errors.length == 0);
+    }
+    function checkQuantityTextbox(theTextbox) {
+        errs = isNonNegInt(theTextbox.value, true);
+        if (errs.length == 0) errs = ['You want:'];
+        if (theTextbox.value.trim() == '') errs = ['Quantity'];
+        document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
+    }
+    window.onload = function () {
+        let params = (new URL(document.location)).searchParams; // get the query string which has the form data//
+        // form was submitted so check that quantities are valid then redirect to invoice if ok//
+        if (params.has('submitPurchase')) {
+            has_errors = false; // assume quantities are valid//
+            total_qty = 0; // need to check if something was selected so we will look if the total > 0//
+            //For every product in the array, write the product number, display its image and name, and list price//
+            for (i = 0; i < products.length; i++) {
+                if (params.has(`quantity${i}`)) {
+                    a_qty = params.get(`quantity${i}`);
+                    // make textboxes sticky in case of invalid data//
+                    product_main_display[`quantity${i}`].value = a_qty;
+                    total_qty += a_qty;
+                    if (!isNonNegInt(a_qty)) {
+                        has_errors = true; // invalid quantity//
+                        checkQuantityTextbox(product_main_display[`quantity${i}`]); // show where the error is//
+                    }
+                }
+            }
+            // Now respond to errors or redirect to invoice//
+            if (has_errors) {
+                alert("Please enter only valid quantities!");
+            } else if (total_qty == 0) { //general alert//
+                alert("Please select some quantities!");
+            } else { // all good//
+                window.location = `./invoice.html${document.location.search}`; //Redirects itself//
+                window.stop;
+            }
+        }
+    }
+</script>
+
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<title>Boulangerie de Mark</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="products_style.css">
+<style>
+body {font-family: "Playfair Display"; background-color: lightblue;}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display";
+  letter-spacing: 5px;
+}
+</style>
+<body>
+<form name="product_main_display" action="/process_purchase" method="POST">
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <a href="#home" class="w3-bar-item w3-button">Boulangerie de Mark</a>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="./login.html" class="w3-bar-item w3-button">Login</a>
+      <a href="./register.html" class="w3-bar-item w3-button">Register</a>
+      <a href="./index2.html#about" class="w3-bar-item w3-button">About</a>
+      <a href="#menu" class="w3-bar-item w3-button">Shop</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+      <a href="./cart.html" class="w3-bar-item w3-button">Shopping Cart</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="margin-left:auto; margin-right:auto;" id="home">
+  <img class="w3-image" src="/Images/Paris.png" alt="Hamburger Catering" style= "size: 50%">
+  <div class="w3-display-middle w3-padding-large w3-opacity" style = "background-color: white;">
+    <h1 class="w3-xxlarge">Boulangerie de Mark</h1>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px">
+
+  <!-- About Section -->
+  <div class="w3-row w3-padding-64" id="about">
+    <div class="w3-col m6 w3-padding-large w3-hide-small">
+     <img src="/Images/Eiffel.png" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600" height="750">
+    </div>
+
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center">About Boulangerie de Mark</h1><br>
+      <h5 class="w3-center">Tradition since 2000</h5>
+      <p class="w3-large">Boulangerie de Mark was founded in Honolulu, Hawaii by Mark Ushiroda in 2000 because of his love for french culture and pastries.</p>
+      <p class="w3-large w3-text-grey w3-hide-medium">La Boulangerie de Mark a été fondée à Honolulu, Hawaï par Mark Ushiroda en 2000 en raison de son amour pour la culture française et les pâtisseries.</p>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <!-- Menu Section -->
+  <div class="w3-row w3-padding-64" id="menu">
+    <div></div><div class="w3-col l6 w3-padding-large" style="width:100%; margin-left: auto; margin-right: auto; background-color: white;" >
+      <h1 class="w3-center">Our Menu</h1><br>
+      <div style="width:100%; margin-left: auto; margin-right: auto; text-align: center;">
+          <a href="./pastry.html" class="w3-bar-item w3-button"><img src= "/Images/Macarons.png" alt ="Table Setting" width ="100" height="100">      Pastry</a>
+          <a href="./bread.html" class="w3-bar-item w3-button"><img src= "/Images/bread1.png" alt ="Table Setting" width ="100" height="100">      Bread</a>
+          <a href="./cake.html" class="w3-bar-item w3-button"><img src= "/Images/cake1.png" alt ="Table Setting" width ="100" height="100">      Cake</a>
+          <a href="./cheese.html" class="w3-bar-item w3-button"><img src= "/Images/cheese1.png" alt ="Table Setting" width ="100" height="100">      Cheese</a>
+          <a href="./sandwich.html" class="w3-bar-item w3-button"><img src= "/Images/sandwich1.png" alt ="Table Setting" width ="100" height="100">      Sandwich</a>
+        
+        <script>
+            for (i = 0; i < products.length; i++) {
+                document.write(`
+                        <section class="item">
+                            <h2>${products[i].product}</h2>
+                            <br><img src="${products[i].image}" style="width:200px; height:200px;">
+                            <p>$${products[i].price}</p>
+                            <label id="quantity${i}_label"}">Quantity</label>
+                            <input type="text" placeholder="0" name="quantity${i}" 
+                            onkeyup="checkQuantityTextbox(this);">
+        
+                        </section>
+                    `);
+            }    
+        </script>
+        <br>
+        <br>
+      </div>
+<!--      <div style="width:100%; margin-left: auto; margin-right: auto; text-align: center;">
+            <input type="submit" value="Submit Purchase" name="submitPurchase">
+        </footer> -->
+      </div>
+    </div>
+    
+    <div class="w3-col l6 w3-padding-large">
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-64" id="contact">
+    <h1>Contact</h1><br>
+    <p>We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste. Do not hesitate to contact us.</p>
+    <p class="w3-text-blue-grey w3-large"><b>Catering Service, 1234 My Adress, Honolulu, HI</b></p>
+    <p>You can also contact us by phone 00553123-2323 or email catering@catering.com</p>
+
+  </div>
+  
+<!-- End page content -->
+</div>
+
+<div id="wrapper">
+  <section id="cta" class="main special">
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-32">
+  <p><a title="W3.CSS" target="_blank" class="w3-hover-text-green">Thank You!</a></p>
+</footer>
+</form>
+</body>
+</html>

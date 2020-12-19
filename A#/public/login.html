@@ -1,0 +1,59 @@
+<!--
+  Asssignment3 ITM352 Fall 2020 
+  Rei Yamamoto
+  This is the Log-in page for my website. You are directed here after you enter the store. You have to log in to order from this store. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script>
+        let params = (new URL(document.location)).searchParams;
+
+        window.onload = function () {
+        // if there are errors with the log in create an alert
+            if (params.has('loginError')) {
+                alert('Invalid Username or Passowrd');
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link href="loginStyle.css" rel="stylesheet">
+    <title>Login Page</title>
+    
+</head>
+
+<body> 
+    <div class="topnav"> 
+        <a href="./index.html" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+        <a href="./login.html" >Login</a>
+        <a href="./register.html">Register</a>
+    </div>
+
+    <h1>Log-in to your account</h1>
+    <p>If you have an account with us log-in here.</p>
+    <form name="login" action="process_login" method="POST">
+        <div class="container"><br>
+            <input type="text" name="username" id="username" size="40" placeholder="Enter Username" required><br>
+            <input type="password" name="password" size="40" placeholder="Enter Password" onkeyup="" required><br> 
+            
+            <input type="submit" value="Login" name="login">
+            <div style="margin-left: auto; margin-right: auto;">
+                <p>Are you a new user?</p>
+                <input type="button" name="newuser" value="New Users register Here" onclick="window.location='./register.html' + document.location.search">
+            </div>
+
+            
+        </div>
+    </form>
+    <script>
+        
+       login.action += document.location.search; // action plus the query string so info won't be lost from the intitial display page
+    </script>
+</body>
+</html>

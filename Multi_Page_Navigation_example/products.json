@@ -1,44 +1,87 @@
 {
-    "gumballs": [
+    "Red Fruit": [
         {
-            "name": "small gumball",
-            "price": 0.1
+        "product":"Apples",  
+        "price": 1.32,  
+        "image": "./Images/apple.jpg"
         },
-        {
-            "name": "medgumball",
-            "price": 0.05
-        },
-        {
-            "name": "large gumball",
-            "price": 0.25
-        }
+        {  
+          "product":"Strawberries",  
+          "price": 2.40,  
+          "image": "./Images/strawberry.jpeg"
+          },
+          {  
+          "product":"Watermelons",  
+          "price": 0.33,  
+          "image": "./Images/watermelon.jpeg"
+          },
+          {  
+            "product":"Cherries",  
+            "price": 0.63,  
+            "image": "./Images/cherries.jpeg"
+            }
     ],
-    "jawbreakers": [
-        {
-            "name": "small jawbreaker",
-            "price": 0.10
+    "Yellow Fruits":[
+        {  
+        "product":"Bananas",  
+        "price": 0.57,  
+        "image": "./Images/banana.jpg"
         },
-        {
-            "name": "med jawbreaker",
-            "price": 0.15
+        {  
+          "product":"Pineapples",  
+          "price": 4.28,  
+          "image": "./Images/pineapple.jpeg"
+          },
+          {  
+            "product":"Lemons",  
+            "price": 1.23,  
+            "image": "./Images/lemons.jpg"
+            },
+            {  
+              "product":"Starfruits",  
+              "price": 1.10,  
+              "image": "./Images/starfruit.jpeg"
+              }],
+         "Orange Fruits":[
+        { 
+        "product":"Mangos",  
+        "price": 4.20,  
+        "image": "./Images/mango.jpg"
         },
-        {
-            "name": "large jawbreaker",
-            "price": 0.35
-        }
-    ],
-    "peanutbuttercups": [
-        {
-            "name": "small peanut butter cup",
-            "price": 0.50
+        {  
+        "product":"Oranges",  
+        "price": 1.33,  
+        "image": "./Images/orange.jpg"
         },
-        {
-            "name": "med peanut butter cup",
-            "price": 0.60
-        },
-        {
-            "name": "large peanut butter cup",
-            "price": 0.75
-        }
-    ]
-}
+        {  
+          "product":"Peaches",  
+          "price": 1.00  ,
+          "image": "./Images/peaches.jpeg"
+          },
+          {  
+            "product":"Apricots",  
+            "price": 2.00,  
+            "image": "./Images/apricot.jpeg"
+            }
+        ],
+        "Purple Fruits":[
+        {  
+          "product":"Grapes",  
+          "price": 2.03,  
+          "image": "./Images/Grapes.jpg"
+          },
+          {  
+            "product":"Blueberries",  
+            "price": 0.25,  
+            "image": "./Images/blue berries.jpeg"
+            },
+            {  
+              "product":"Figs",  
+              "price": 1.15,  
+              "image": "./Images/fig.jpeg"
+              },
+              {  
+                "product":"Black Berries",  
+                "price": 0.67,  
+                "image": "./Images/black berries.jpeg"
+                }]}

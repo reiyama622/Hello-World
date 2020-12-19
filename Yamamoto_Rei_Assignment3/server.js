@@ -25,17 +25,7 @@ app.use(cookieParser());
 var session = require('express-session'); 
 app.use(session({
     secret: "ITM352 rocks!"}));  
-//if the file exists read it 
-if (fs.existsSync(filename)) {
-    var stats = fs.statSync(filename)
-    console.log("Read  " + filename);
-    //console.log(filename + 'has' + data.size + 'characters');
-    data1 = fs.readFileSync(filename, 'utf-8');
-    var user_data = JSON.parse(data1);
-} else { 
-    console.log("Can't read file " + filename);
-    exit();
-}
+
 //writes the requests in the console and the path
 app.all('*', function (request, response, next) { 
     console.log(request.method + ' to ' + request.path);
@@ -119,9 +109,9 @@ app.post("/process_login", function (request, response) {
 });
 
 //Allows us to load in the cart page , reference from professor
-app.get("/invoice.html", function (request, response) {
+app.get("/cart.html", function (request, response) {
     var cartfile = `<script> var cart = ${JSON.stringify(request.session)}</script>`;
-    cartfile += fs.readFileSync('./public/invoice.html', 'utf-8'); // add it onto the cart page which is in public
+    cartfile += fs.readFileSync('./public/cart.html', 'utf-8'); // add it onto the cart page which is in public
     response.send(cartfile);
   
   });
@@ -219,7 +209,7 @@ app.post("/process_form", function(request, response) {
         if (hasValidQuantities && hasQuantities) {
             request.session[product_type] = POST; 
             console.log(request.session);
-            response.redirect("./invoice.html?"+stringified); 
+            response.redirect("./cart.html?"+stringified); 
         }  
         //outputs 
         else {response.send('You did not enter a valid quantity')} 
