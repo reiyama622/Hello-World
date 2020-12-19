@@ -25,7 +25,15 @@ app.use(cookieParser());
 var session = require('express-session'); 
 app.use(session({
     secret: "ITM352 rocks!"}));  
-
+    if (fs.existsSync(filename)) {
+        var stats = fs.statSync(filename) //gets stats from file
+        console.log(filename + 'has' + stats.size + 'characters');
+    
+        var data = fs.readFileSync(filename, 'utf-8');
+        var user_data = JSON.parse(data);
+    } else { 
+        console.log(filename + 'does not exist!');
+    }
 //writes the requests in the console and the path
 app.all('*', function (request, response, next) { 
     console.log(request.method + ' to ' + request.path);
@@ -227,13 +235,8 @@ app.get("/checkout", function (request, response) {
         if( typeof cart != 'undefined') {
           str = JSON.stringify(cart);
         }
-          var qty = str[i];
-          if(qty > 0) {
-            invoice_str += `<tr><td>${qty}</td><td>${products[product_type][i].name}</td><tr>`;
-          }
       }
   }
-    invoice_str += '</table>';
   // Set up mail server. Only will work on UH Network due to security restrictions
     var transporter = nodemailer.createTransport({
       host: "mail.hawaii.edu",

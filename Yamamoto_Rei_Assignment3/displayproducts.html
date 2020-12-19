@@ -8,28 +8,37 @@
 <script>
     //Referenced from assignment 1 examples
     function isNonNegInt(q, return_errors = false) {
-        // assume no errors at first
-        errors = []; 
-         // handle blank inputs as if they are 0
-        if (q == '') q = 0;
-        // Check if string is a number value
-        if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); 
-        // Check if it is non-negative
-        else if (q < 0) errors.push('<font color="red">Negative value!</font>');
-         // Check that it is an integer 
-        else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>');
-        return return_errors ? errors : (errors.length == 0)
+        errors = []; // assume no errors at first
+        if (q == '') q = 0; // handle blank inputs as if they are 0
+        if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); // Check if string is a number value
+        else if (q < 0) errors.push('<font color="red">Negative value!</font>'); // Check if it is non-negative
+        else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); // Check that it is an integer
+        return return_errors ? errors : (errors.length == 0);
+    }
+    function checkQuantityTextbox(theTextbox) {
+        errs = isNonNegInt(theTextbox.value, true);
+        if (errs.length == 0) errs = ['You want:'];
+        if (theTextbox.value.trim() == '') errs = ['Quantity'];
+        document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
+   }
+   //Add to session, from the amount in the cart
+   function add_to_cart (i) {
+    var incart = product_main_display[`quantity${i}`].value; 
+    if (isNonNegInt(incart) = true) { 
+        sessionStorage['products${i}'] = incart;
+        console.log(incart) 
+    } 
+    
+
+
    }
 
     window.onload = function () {
-        // get the query string which has the form data
+        let params = (new URL(document.location)).searchParams; // get the query string which has the form data
         // form was submitted so check that quantities are valid then redirect to invoice if ok.
-        let params = (new URL(document.location)).searchParams; 
         if (params.has('submitPurchase')) {
-             // assume quantities are valid from the start
-            has_errors = false;
-            // need to check if something was selected so we will look if the total > 0
-            total_qty = 0; 
+            has_errors = false; // assume quantities are valid from the start
+            total_qty = 0; // need to check if something was selected so we will look if the total > 0
             //For every product in the array, write the product number, display its image and name, and list price
             for (i = 0; i < products.length; i++) {
                 if (params.has(`quantity${i}`)) {
@@ -38,19 +47,18 @@
                     product_form[`quantity${i}`].value = a_qty;
                     total_qty += a_qty;
                     if (!isNonNegInt(a_qty)) {
-                        has_errors = true; 
-                        checkQuantityTextbox(product_form[`quantity${i}`]);
+                        has_errors = true; // oops, invalid quantity
+                        checkQuantityTextbox(product_form[`quantity${i}`]); // show where the error is
                     }
                 }
             }
             // Now respond to errors or redirect to invoice if all is ok
             if (has_errors) {
-                //If no quantities selected gives an alert
                 alert("Please enter only valid quantities!");
-            } else if (total_qty == 0) { 
+            } else if (total_qty == 0) { // no quantity selections, just give a general alert
                 alert("Please select some quantities!");
-            } else { 
-                window.location = `./login.html.html${document.location.search}`; 
+            } else { // all good to go!
+                window.location = `./login.html.html${document.location.search}`; //Redirects itself
                 window.stop;
             }
         }
@@ -140,6 +148,7 @@
                             }
                     }    
                 </script>
+                </head>
         </div>
         <footer>
             <div id="b"></div><input id = "button" type="submit" value="Add to cart" name="checkOut" onclick="add_to_cart"><div>
